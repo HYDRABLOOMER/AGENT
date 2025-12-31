@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eco Tasks - EcoQuest</title>
+    <link rel="stylesheet" href="../css/main.css">
+  <script type="module" async src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fecoquest4652back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.12"></script>
+  <script type="module" defer src="https://static.rocket.new/rocket-shot.js?v=0.0.2"></script>
+  </head>
+<body class="bg-background">
+    <!-- Navigation Header -->
+    <header class="bg-surface border-b border-border-surface sticky top-0 z-100">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo -->
+                <div class="flex items-center space-x-3">
+                    <svg class="w-10 h-10" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="20" cy="20" r="18" fill="#2D7D32"/>
+                        <path d="M20 8C18.5 8 17 9 17 11C17 13 18.5 14 20 14C21.5 14 23 13 23 11C23 9 21.5 8 20 8Z" fill="#4CAF50"/>
+                        <path d="M20 14C18 14 16 15.5 16 18V24C16 26.5 18 28 20 28C22 28 24 26.5 24 24V18C24 15.5 22 14 20 14Z" fill="#66BB6A"/>
+                        <ellipse cx="20" cy="30" rx="8" ry="2" fill="#1B5E20"/>
+                    </svg>
+                    <span class="text-2xl font-heading font-bold text-primary">EcoQuest</span>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center space-x-1">
+                    <a href="user_dashboard.html" class="px-4 py-2 rounded-lg text-text-secondary hover:bg-surface-50 transition-colors">Dashboard</a>
+                    <a href="knowledge_quiz.html" class="px-4 py-2 rounded-lg text-text-secondary hover:bg-surface-50 transition-colors">Quiz</a>
+                    <a href="eco_tasks.html" class="px-4 py-2 rounded-lg bg-primary-50 text-primary font-medium">Tasks</a>
+                    <a href="community_issues.html" class="px-4 py-2 rounded-lg text-text-secondary hover:bg-surface-50 transition-colors">Community</a>
+                    <a href="leaderboards.html" class="px-4 py-2 rounded-lg text-text-secondary hover:bg-surface-50 transition-colors">Leaderboards</a>
+                </div>
+
+                <!-- User Profile -->
+                <div class="flex items-center space-x-4">
+                    <button class="relative p-2 text-text-secondary hover:text-primary transition-colors">
+                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_16a438811-1766990283880.png" alt="Notifications icon" class="w-6 h-6">
+                        <span class="absolute top-1 right-1 w-2 h-2 bg-accent rounded-full"></span>
+                    </button>
+                    <a href="user_profile.html" class="flex items-center space-x-2 hover:opacity-80 transition-opacity">
+                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_16e7b66b9-1766496824802.png" alt="User profile avatar" class="w-9 h-9 rounded-full object-cover border-2 border-primary">
+                        <span class="hidden sm:block text-sm font-medium text-text-primary">Alex Rivera</span>
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Page Header -->
+        <div class="mb-8">
+            <h1 class="text-4xl font-heading font-bold text-text-primary mb-2">Eco Tasks 🌍</h1>
+            <p class="text-text-secondary">Complete real-world environmental actions and earn EcoPoints</p>
+        </div>
+
+        <!-- Stats Overview -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+            <!-- Completed Tasks -->
+            <div class="card card-hover bg-gradient-to-br from-success-50 to-success-100 border-success/20">
+                <div class="flex items-start justify-between mb-4">
+                    <div>
+                        <p class="text-sm text-text-secondary font-medium mb-1">Completed Tasks</p>
+                        <h3 class="text-3xl font-heading font-bold text-success">24</h3>
+                    </div>
+                    <div class="w-12 h-12 bg-success rounded-xl flex items-center justify-center">
+                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_10d875ff2-1766817002058.png" alt="Check circle icon representing completed tasks" class="w-7 h-7">
+                    </div>
+                </div>
+                <div class="flex items-center text-sm text-success-700">
+                    <img src="https://img.rocket.new/generatedImages/rocket_gen_img_17ff887b6-1766938191415.png" alt="Trending up icon" class="w-4 h-4 mr-1">
+                    <span>+3 this week</span>
+                </div>
+            </div>
+
+            <!-- Pending Verification -->
+            <div class="card card-hover bg-gradient-to-br from-warning-50 to-warning-100 border-warning/20">
+                <div class="flex items-start justify-between mb-4">
+                    <div>
+                        <p class="text-sm text-text-secondary font-medium mb-1">Pending Review</p>
+                        <h3 class="text-3xl font-heading font-bold text-warning">2</h3>
+                    </div>
+                    <div class="w-12 h-12 bg-warning rounded-xl flex items-center justify-center">
+                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1cf22a8aa-1766771929919.png" alt="Clock icon representing pending tasks" class="w-7 h-7">
+                    </div>
+                </div>
+                <div class="flex items-center text-sm text-warning-700">
+                    <img src="https://img.rocket.new/generatedImages/rocket_gen_img_10a301dcf-1767101029048.png" alt="Timer icon" class="w-4 h-4 mr-1">
+                    <span>Under review</span>
+                </div>
+            </div>
+
+            <!-- Total Points Earned -->
+            <div class="card card-hover bg-gradient-to-br from-primary-50 to-primary-100 border-primary/20">
+                <div class="flex items-start justify-between mb-4">
+                    <div>
+                            <p class="text-sm text-text-secondary font-medium mb-1">Points Earned</p>
+                            <h3 id="pointsEarned" class="text-3xl font-heading font-bold text-primary">1,840</h3>
+                        </div>
+                    <div class="w-12 h-12 bg-primary rounded-xl flex items-center justify-center">
+                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1db2e5fd3-1767175396586.png" alt="Star icon representing points" class="w-7 h-7">
+                    </div>
+                </div>
+                <div class="flex items-center text-sm text-primary-700">
+                    <img src="https://img.rocket.new/generatedImages/rocket_gen_img_10c9e1ed8-1764666328205.png" alt="Leaf icon" class="w-4 h-4 mr-1">
+                    <span>From tasks</span>
+                </div>
+            </div>
+
+            <!-- Current Streak -->
+            <div class="card card-hover bg-gradient-to-br from-accent-50 to-accent-100 border-accent/20">
+                <div class="flex items-start justify-between mb-4">
+                    <div>
+                        <p class="text-sm text-text-secondary font-medium mb-1">Task Streak</p>
+                        <h3 class="text-3xl font-heading font-bold text-accent">12 Days</h3>
+                    </div>
+                    <div class="w-12 h-12 bg-accent rounded-xl flex items-center justify-center">
+                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1629195c5-1766515855391.png" alt="Fire icon representing streak" class="w-7 h-7">
+                    </div>
+                </div>
+                <div class="flex items-center text-sm text-accent-700">
+                    <img src="https://img.rocket.new/generatedImages/rocket_gen_img_10d875ff2-1766817002058.png" alt="Calendar check icon" class="w-4 h-4 mr-1">
+                    <span>Keep going!</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Filters and Search -->
+        <div class="card mb-8">
+            <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+                <!-- Search Bar -->
+                <div class="flex-1 max-w-md">
+                    <div class="relative">
+                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_194eeb027-1764656322629.png" alt="Search icon" class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5">
+                        <input type="text" placeholder="Search tasks..." class="input pl-12 w-full" id="taskSearch">
+                    </div>
+                </div>
+
+                <!-- Filter Controls -->
+                <div class="flex flex-wrap items-center gap-3">
+                    <!-- Category Filter -->
+                    <div class="relative">
+                        <button class="flex items-center space-x-2 px-4 py-2 bg-surface-50 rounded-lg hover:bg-surface-100 transition-colors border border-border-surface" id="categoryFilter">
+                            <img src="https://img.rocket.new/generatedImages/rocket_gen_img_18ff10d2f-1764660632354.png" alt="Filter icon" class="w-5 h-5">
+                            <span class="text-sm font-medium text-text-primary">All Categories</span>
+                            <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1d99f22fc-1764644375055.png" alt="Chevron down icon" class="w-4 h-4">
+                        </button>
+                    </div>
+
+                    <!-- Difficulty Filter -->
+                    <div class="relative">
+                        <button class="flex items-center space-x-2 px-4 py-2 bg-surface-50 rounded-lg hover:bg-surface-100 transition-colors border border-border-surface" id="difficultyFilter">
+                            <img src="https://img.rocket.new/generatedImages/rocket_gen_img_14470a21a-1767175398760.png" alt="Signal icon for difficulty" class="w-5 h-5">
+                            <span class="text-sm font-medium text-text-primary">All Levels</span>
+                            <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1d99f22fc-1764644375055.png" alt="Chevron down icon" class="w-4 h-4">
+                        </button>
+                    </div>
+
+                    <!-- Sort By -->
+                    <div class="relative">
+                        <button class="flex items-center space-x-2 px-4 py-2 bg-surface-50 rounded-lg hover:bg-surface-100 transition-colors border border-border-surface" id="sortFilter">
+                            <img src="https://img.rocket.new/generatedImages/rocket_gen_img_11d73560a-1766499825938.png" alt="Sort icon" class="w-5 h-5">
+                            <span class="text-sm font-medium text-text-primary">Sort By</span>
+                            <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1d99f22fc-1764644375055.png" alt="Chevron down icon" class="w-4 h-4">
+                        </button>
+                    </div>
+
+                    <!-- Reset Filters -->
+                    <button class="flex items-center space-x-2 px-4 py-2 text-primary hover:bg-primary-50 rounded-lg transition-colors" id="resetFilters">
+                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1aeddefea-1767123354722.png" alt="Reset icon" class="w-5 h-5">
+                        <span class="text-sm font-medium">Reset</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Tasks List Section -->
+            <div class="lg:col-span-2 space-y-6">
+                <!-- Category Tabs -->
+                <div class="flex flex-wrap gap-2 mb-6">
+                    <button class="px-4 py-2 bg-primary text-white rounded-lg font-medium transition-colors">All Tasks</button>
+                    <button class="px-4 py-2 bg-surface-50 text-text-secondary rounded-lg font-medium hover:bg-surface-100 transition-colors">Recycling</button>
+                    <button class="px-4 py-2 bg-surface-50 text-text-secondary rounded-lg font-medium hover:bg-surface-100 transition-colors">Conservation</button>
+                    <button class="px-4 py-2 bg-surface-50 text-text-secondary rounded-lg font-medium hover:bg-surface-100 transition-colors">Advocacy</button>
+                    <button class="px-4 py-2 bg-surface-50 text-text-secondary rounded-lg font-medium hover:bg-surface-100 transition-colors">Education</button>
+                </div>
+
+                <!-- Task Cards -->
+                <div class="space-y-6" id="tasksList">
+                    <!-- Task Card 1 - Recycling -->
+                    <div class="card card-hover border-l-4 border-l-success">
+                        <div class="flex flex-col sm:flex-row gap-6">
+                            <!-- Task Image -->
+                            <div class="w-full sm:w-48 h-48 flex-shrink-0 rounded-xl overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1604609865013-7e00416561c3" alt="Person sorting recyclable materials into different bins" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;">
+                            </div>
+
+                            <!-- Task Details -->
+                            <div class="flex-1 min-w-0">
+                                <div class="flex items-start justify-between mb-3">
+                                    <div>
+                                        <div class="flex items-center space-x-2 mb-2">
+                                            <span class="badge badge-success">Recycling</span>
+                                            <span class="badge bg-primary-100 text-primary-700">Easy</span>
+                                        </div>
+                                        <h3 class="text-xl font-heading font-semibold text-text-primary mb-2">Community Recycling Drive</h3>
+                                        <p class="text-sm text-text-secondary mb-3">Organize or participate in a local recycling collection event. Document the amount of materials collected and properly sorted.</p>
+                                    </div>
+                                </div>
+
+                                <!-- Task Meta Info -->
+                                <div class="flex flex-wrap items-center gap-4 mb-4 text-sm text-text-secondary">
+                                    <div class="flex items-center space-x-1">
+                                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1215e9160-1767107894078.png" alt="Star icon for points" class="w-4 h-4">
+                                        <span class="font-medium text-accent">150 Points</span>
+                                    </div>
+                                    <div class="flex items-center space-x-1">
+                                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_146e3f98d-1764648747146.png" alt="Clock icon for duration" class="w-4 h-4">
+                                        <span>2-3 hours</span>
+                                    </div>
+                                    <div class="flex items-center space-x-1">
+                                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1263f966d-1766595347304.png" alt="Location marker icon" class="w-4 h-4">
+                                        <span>Local Area</span>
+                                    </div>
+                                    <div class="flex items-center space-x-1">
+                                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_14256b291-1764684278019.png" alt="Group icon for participants" class="w-4 h-4">
+                                        <span>342 completed</span>
+                                    </div>
+                                </div>
+
+                                <!-- Action Buttons -->
+                                <div class="flex flex-wrap gap-3">
+                                    <button class="btn btn-primary start-task-btn flex items-center space-x-2" data-points="150" data-task="Community Recycling Drive">
+                                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_13f8dc4b9-1767175396112.png" alt="Play icon" class="w-5 h-5">
+                                        <span>Start Task</span>
+                                    </button>
+                                    <button class="btn btn-outline flex items-center space-x-2">
+                                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_14bff7831-1766620330384.png" alt="Information icon" class="w-5 h-5">
+                                        <span>View Details</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Task Card 2 - Conservation -->
+                    <div class="card card-hover border-l-4 border-l-primary">
+                        <div class="flex flex-col sm:flex-row gap-6">
+                            <!-- Task Image -->
+                            <div class="w-full sm:w-48 h-48 flex-shrink-0 rounded-xl overflow-hidden">
+                                <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1720de0de-1766830310888.png" alt="Volunteers planting trees in a community garden" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;">
+                            </div>
+
+                            <!-- Task Details -->
+                            <div class="flex-1 min-w-0">
+                                <div class="flex items-start justify-between mb-3">
+                                    <div>
+                                        <div class="flex items-center space-x-2 mb-2">
+                                            <span class="badge badge-primary">Conservation</span>
+                                            <span class="badge bg-warning-100 text-warning-700">Medium</span>
+                                        </div>
+                                        <h3 class="text-xl font-heading font-semibold text-text-primary mb-2">Tree Planting Initiative</h3>
+                                        <p class="text-sm text-text-secondary mb-3">Plant native trees in designated areas. Submit photos of planted saplings with location tags and species information.</p>
+                                    </div>
+                                </div>
+
+                                <!-- Task Meta Info -->
+                                <div class="flex flex-wrap items-center gap-4 mb-4 text-sm text-text-secondary">
+                                    <div class="flex items-center space-x-1">
+                                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1215e9160-1767107894078.png" alt="Star icon for points" class="w-4 h-4">
+                                        <span class="font-medium text-accent">200 Points</span>
+                                    </div>
+                                    <div class="flex items-center space-x-1">
+                                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_146e3f98d-1764648747146.png" alt="Clock icon for duration" class="w-4 h-4">
+                                        <span>3-4 hours</span>
+                                    </div>
+                                    <div class="flex items-center space-x-1">
+                                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1263f966d-1766595347304.png" alt="Location marker icon" class="w-4 h-4">
+                                        <span>Outdoor</span>
+                                    </div>
+                                    <div class="flex items-center space-x-1">
+                                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_14256b291-1764684278019.png" alt="Group icon for participants" class="w-4 h-4">
+                                        <span>567 completed</span>
+                                    </div>
+                                </div>
+
+                                <!-- Action Buttons -->
+                                <div class="flex flex-wrap gap-3">
+                                    <button class="btn btn-primary start-task-btn flex items-center space-x-2" data-points="200" data-task="Tree Planting Initiative">
+                                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_13f8dc4b9-1767175396112.png" alt="Play icon" class="w-5 h-5">
+                                        <span>Start Task</span>
+                                    </button>
+                                    <button class="btn btn-outline flex items-center space-x-2">
+                                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_14bff7831-1766620330384.png" alt="Information icon" class="w-5 h-5">
+                                        <span>View Details</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Task Card 3 - Education -->
+                    <div class="card card-hover border-l-4 border-l-secondary">
+                        <div class="flex flex-col sm:flex-row gap-6">
+                            <!-- Task Image -->
+                            <div class="w-full sm:w-48 h-48 flex-shrink-0 rounded-xl overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1697249214612-0e8c6d717c61" alt="Teacher presenting environmental education to students in classroom" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;">
+                            </div>
+
+                            <!-- Task Details -->
+                            <div class="flex-1 min-w-0">
+                                <div class="flex items-start justify-between mb-3">
+                                    <div>
+                                        <div class="flex items-center space-x-2 mb-2">
+                                            <span class="badge bg-secondary-100 text-secondary-700">Education</span>
+                                            <span class="badge bg-primary-100 text-primary-700">Easy</span>
+                                        </div>
+                                        <h3 class="text-xl font-heading font-semibold text-text-primary mb-2">Environmental Workshop</h3>
+                                        <p class="text-sm text-text-secondary mb-3">Conduct or attend an environmental awareness workshop. Share key learnings and photos from the session.</p>
+                                    </div>
+                                </div>
+
+                                <!-- Task Meta Info -->
+                                <div class="flex flex-wrap items-center gap-4 mb-4 text-sm text-text-secondary">
+                                    <div class="flex items-center space-x-1">
+                                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1215e9160-1767107894078.png" alt="Star icon for points" class="w-4 h-4">
+                                        <span class="font-medium text-accent">100 Points</span>
+                                    </div>
+                                    <div class="flex items-center space-x-1">
+                                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_146e3f98d-1764648747146.png" alt="Clock icon for duration" class="w-4 h-4">
+                                        <span>1-2 hours</span>
+                                    </div>
+                                    <div class="flex items-center space-x-1">
+                                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1263f966d-1766595347304.png" alt="Location marker icon" class="w-4 h-4">
+                                        <span>Indoor/Online</span>
+                                    </div>
+                                    <div class="flex items-center space-x-1">
+                                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_14256b291-1764684278019.png" alt="Group icon for participants" class="w-4 h-4">
+                                        <span>289 completed</span>
+                                    </div>
+                                </div>
+
+                                <!-- Action Buttons -->
+                                <div class="flex flex-wrap gap-3">
+                                    <button class="btn btn-primary start-task-btn flex items-center space-x-2" data-points="100" data-task="Environmental Workshop">
+                                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_13f8dc4b9-1767175396112.png" alt="Play icon" class="w-5 h-5">
+                                        <span>Start Task</span>
+                                    </button>
+                                    <button class="btn btn-outline flex items-center space-x-2">
+                                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_14bff7831-1766620330384.png" alt="Information icon" class="w-5 h-5">
+                                        <span>View Details</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Task Card 4 - Advocacy -->
+                    <div class="card card-hover border-l-4 border-l-accent">
+                        <div class="flex flex-col sm:flex-row gap-6">
+                            <!-- Task Image -->
+                            <div class="w-full sm:w-48 h-48 flex-shrink-0 rounded-xl overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1553522911-f8607a133a83" alt="Group of activists holding environmental protest signs" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;">
+                            </div>
+
+                            <!-- Task Details -->
+                            <div class="flex-1 min-w-0">
+                                <div class="flex items-start justify-between mb-3">
+                                    <div>
+                                        <div class="flex items-center space-x-2 mb-2">
+                                            <span class="badge bg-accent-100 text-accent-700">Advocacy</span>
+                                            <span class="badge bg-error-100 text-error-700">Hard</span>
+                                        </div>
+                                        <h3 class="text-xl font-heading font-semibold text-text-primary mb-2">Climate Action Campaign</h3>
+                                        <p class="text-sm text-text-secondary mb-3">Organize a climate awareness campaign in your community. Document participation, reach, and impact metrics.</p>
+                                    </div>
+                                </div>
+
+                                <!-- Task Meta Info -->
+                                <div class="flex flex-wrap items-center gap-4 mb-4 text-sm text-text-secondary">
+                                    <div class="flex items-center space-x-1">
+                                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1215e9160-1767107894078.png" alt="Star icon for points" class="w-4 h-4">
+                                        <span class="font-medium text-accent">300 Points</span>
+                                    </div>
+                                    <div class="flex items-center space-x-1">
+                                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_146e3f98d-1764648747146.png" alt="Clock icon for duration" class="w-4 h-4">
+                                        <span>5+ hours</span>
+                                    </div>
+                                    <div class="flex items-center space-x-1">
+                                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1263f966d-1766595347304.png" alt="Location marker icon" class="w-4 h-4">
+                                        <span>Community</span>
+                                    </div>
+                                    <div class="flex items-center space-x-1">
+                                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_14256b291-1764684278019.png" alt="Group icon for participants" class="w-4 h-4">
+                                        <span>124 completed</span>
+                                    </div>
+                                </div>
+
+                                <!-- Action Buttons -->
+                                <div class="flex flex-wrap gap-3">
+                                    <button class="btn btn-primary start-task-btn flex items-center space-x-2" data-points="300" data-task="Climate Action Campaign">
+                                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_13f8dc4b9-1767175396112.png" alt="Play icon" class="w-5 h-5">
+                                        <span>Start Task</span>
+                                    </button>
+                                    <button class="btn btn-outline flex items-center space-x-2">
+                                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_14bff7831-1766620330384.png" alt="Information icon" class="w-5 h-5">
+                                        <span>View Details</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Task Card 5 - Conservation -->
+                    <div class="card card-hover border-l-4 border-l-primary">
+                        <div class="flex flex-col sm:flex-row gap-6">
+                            <!-- Task Image -->
+                            <div class="w-full sm:w-48 h-48 flex-shrink-0 rounded-xl overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1639390325187-98c9534805e7" alt="Volunteers collecting plastic waste from beach shoreline" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;">
+                            </div>
+
+                            <!-- Task Details -->
+                            <div class="flex-1 min-w-0">
+                                <div class="flex items-start justify-between mb-3">
+                                    <div>
+                                        <div class="flex items-center space-x-2 mb-2">
+                                            <span class="badge badge-primary">Conservation</span>
+                                            <span class="badge bg-primary-100 text-primary-700">Easy</span>
+                                        </div>
+                                        <h3 class="text-xl font-heading font-semibold text-text-primary mb-2">Beach Cleanup Drive</h3>
+                                        <p class="text-sm text-text-secondary mb-3">Participate in coastal cleanup activities. Collect and document plastic waste removed from beaches and waterways.</p>
+                                    </div>
+                                </div>
+
+                                <!-- Task Meta Info -->
+                                <div class="flex flex-wrap items-center gap-4 mb-4 text-sm text-text-secondary">
+                                    <div class="flex items-center space-x-1">
+                                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1215e9160-1767107894078.png" alt="Star icon for points" class="w-4 h-4">
+                                        <span class="font-medium text-accent">120 Points</span>
+                                    </div>
+                                    <div class="flex items-center space-x-1">
+                                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_146e3f98d-1764648747146.png" alt="Clock icon for duration" class="w-4 h-4">
+                                        <span>2 hours</span>
+                                    </div>
+                                    <div class="flex items-center space-x-1">
+                                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1263f966d-1766595347304.png" alt="Location marker icon" class="w-4 h-4">
+                                        <span>Coastal Area</span>
+                                    </div>
+                                    <div class="flex items-center space-x-1">
+                                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_14256b291-1764684278019.png" alt="Group icon for participants" class="w-4 h-4">
+                                        <span>456 completed</span>
+                                    </div>
+                                </div>
+
+                                <!-- Action Buttons -->
+                                <div class="flex flex-wrap gap-3">
+                                    <button class="btn btn-primary start-task-btn flex items-center space-x-2" data-points="120" data-task="Beach Cleanup Drive">
+                                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_13f8dc4b9-1767175396112.png" alt="Play icon" class="w-5 h-5">
+                                        <span>Start Task</span>
+                                    </button>
+                                    <button class="btn btn-outline flex items-center space-x-2">
+                                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_14bff7831-1766620330384.png" alt="Information icon" class="w-5 h-5">
+                                        <span>View Details</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Load More Button -->
+                <div class="flex justify-center mt-8">
+                    <button class="btn btn-outline flex items-center space-x-2">
+                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1f22e5837-1764668818179.png" alt="Refresh icon" class="w-5 h-5">
+                        <span>Load More Tasks</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Right Sidebar -->
+            <div class="space-y-6">
+                <!-- My Active Tasks -->
+                <div class="card">
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 class="text-xl font-heading font-semibold text-text-primary">My Active Tasks</h2>
+                        <span class="badge badge-primary">2</span>
+                    </div>
+
+                    <div class="space-y-4">
+                        <!-- Active Task 1 -->
+                        <div class="p-4 bg-warning-50 rounded-xl border-l-4 border-warning">
+                            <div class="flex items-start justify-between mb-2">
+                                <h4 class="font-medium text-text-primary text-sm">Beach Cleanup</h4>
+                                <span class="badge badge-warning text-xs">Pending</span>
+                            </div>
+                            <p class="text-xs text-text-secondary mb-3">Awaiting verification</p>
+                            <div class="flex items-center justify-between text-xs">
+                                <span class="text-text-tertiary">Submitted 2 days ago</span>
+                                <button class="text-primary hover:text-primary-600 font-medium">View</button>
+                            </div>
+                        </div>
+
+                        <!-- Active Task 2 -->
+                        <div class="p-4 bg-primary-50 rounded-xl border-l-4 border-primary">
+                            <div class="flex items-start justify-between mb-2">
+                                <h4 class="font-medium text-text-primary text-sm">Tree Planting</h4>
+                                <span class="badge bg-primary-100 text-primary-700 text-xs">In Progress</span>
+                            </div>
+                            <p class="text-xs text-text-secondary mb-3">50% complete</p>
+                            <div class="w-full bg-surface-200 rounded-full h-2 mb-2">
+                                <div class="bg-primary h-2 rounded-full" style="width: 50%"></div>
+                            </div>
+                            <div class="flex items-center justify-between text-xs">
+                                <span class="text-text-tertiary">Started 5 days ago</span>
+                                <button class="text-primary hover:text-primary-600 font-medium">Continue</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="w-full mt-4 text-sm text-primary hover:text-primary-600 font-medium text-center py-2">View All Active Tasks</button>
+                </div>
+
+                <!-- Task Categories Progress -->
+                <div class="card">
+                    <h2 class="text-xl font-heading font-semibold text-text-primary mb-6">Category Progress</h2>
+                    
+                    <div class="space-y-4">
+                        <!-- Recycling Progress -->
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <div class="flex items-center space-x-2">
+                                    <img src="https://img.rocket.new/generatedImages/rocket_gen_img_14baff179-1767175397786.png" alt="Recycle icon" class="w-5 h-5">
+                                    <span class="text-sm font-medium text-text-primary">Recycling</span>
+                                </div>
+                                <span class="text-sm font-medium text-success">8/15</span>
+                            </div>
+                            <div class="w-full bg-surface-200 rounded-full h-2">
+                                <div class="bg-success h-2 rounded-full" style="width: 53%"></div>
+                            </div>
+                        </div>
+
+                        <!-- Conservation Progress -->
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <div class="flex items-center space-x-2">
+                                    <img src="https://img.rocket.new/generatedImages/rocket_gen_img_10c9e1ed8-1764666328205.png" alt="Leaf icon" class="w-5 h-5">
+                                    <span class="text-sm font-medium text-text-primary">Conservation</span>
+                                </div>
+                                <span class="text-sm font-medium text-primary">6/12</span>
+                            </div>
+                            <div class="w-full bg-surface-200 rounded-full h-2">
+                                <div class="bg-primary h-2 rounded-full" style="width: 50%"></div>
+                            </div>
+                        </div>
+
+                        <!-- Education Progress -->
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <div class="flex items-center space-x-2">
+                                    <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1877fb62c-1767175396574.png" alt="School icon" class="w-5 h-5">
+                                    <span class="text-sm font-medium text-text-primary">Education</span>
+                                </div>
+                                <span class="text-sm font-medium text-secondary">5/10</span>
+                            </div>
+                            <div class="w-full bg-surface-200 rounded-full h-2">
+                                <div class="bg-secondary h-2 rounded-full" style="width: 50%"></div>
+                            </div>
+                        </div>
+
+                        <!-- Advocacy Progress -->
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <div class="flex items-center space-x-2">
+                                    <img src="https://img.rocket.new/generatedImages/rocket_gen_img_11d83d2b7-1767175408490.png" alt="Bullhorn icon" class="w-5 h-5">
+                                    <span class="text-sm font-medium text-text-primary">Advocacy</span>
+                                </div>
+                                <span class="text-sm font-medium text-accent">5/20</span>
+                            </div>
+                            <div class="w-full bg-surface-200 rounded-full h-2">
+                                <div class="bg-accent h-2 rounded-full" style="width: 25%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Achievements -->
+                <div class="card">
+                    <h2 class="text-xl font-heading font-semibold text-text-primary mb-6">Recent Achievements</h2>
+                    
+                    <div class="space-y-4">
+                        <!-- Achievement 1 -->
+                        <div class="flex items-center space-x-3 p-3 bg-success-50 rounded-xl">
+                            <div class="w-12 h-12 bg-success rounded-full flex items-center justify-center flex-shrink-0">
+                                <img src="https://img.rocket.new/generatedImages/rocket_gen_img_104244020-1767175407184.png" alt="Trophy icon" class="w-6 h-6">
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <h4 class="text-sm font-medium text-text-primary">Recycling Champion</h4>
+                                <p class="text-xs text-text-secondary">Completed 10 recycling tasks</p>
+                            </div>
+                        </div>
+
+                        <!-- Achievement 2 -->
+                        <div class="flex items-center space-x-3 p-3 bg-primary-50 rounded-xl">
+                            <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center flex-shrink-0">
+                                <img src="https://img.rocket.new/generatedImages/rocket_gen_img_18170e5bc-1766819404689.png" alt="Medal icon" class="w-6 h-6">
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <h4 class="text-sm font-medium text-text-primary">Tree Planter</h4>
+                                <p class="text-xs text-text-secondary">Planted 25+ trees</p>
+                            </div>
+                        </div>
+
+                        <!-- Achievement 3 -->
+                        <div class="flex items-center space-x-3 p-3 bg-accent-50 rounded-xl">
+                            <div class="w-12 h-12 bg-accent rounded-full flex items-center justify-center flex-shrink-0">
+                                <img src="https://img.rocket.new/generatedImages/rocket_gen_img_19829a71b-1766988375904.png" alt="Fire icon" class="w-6 h-6">
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <h4 class="text-sm font-medium text-text-primary">Streak Master</h4>
+                                <p class="text-xs text-text-secondary">10-day task streak</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="w-full mt-4 text-sm text-primary hover:text-primary-600 font-medium text-center py-2">View All Achievements</button>
+                </div>
+
+                <!-- Task Submission Guidelines -->
+                <div class="card bg-gradient-to-br from-primary-50 to-primary-100 border-primary/20">
+                    <div class="flex items-start space-x-3 mb-4">
+                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_14bff7831-1766620330384.png" alt="Information icon" class="w-6 h-6 flex-shrink-0 mt-1">
+                        <div>
+                            <h3 class="font-heading font-semibold text-text-primary mb-2">Submission Tips</h3>
+                            <ul class="space-y-2 text-sm text-text-secondary">
+                                <li class="flex items-start space-x-2">
+                                    <img src="https://img.rocket.new/generatedImages/rocket_gen_img_14a0ca6db-1766548536183.png" alt="Check icon" class="w-4 h-4 flex-shrink-0 mt-0.5">
+                                    <span>Take clear, well-lit photos</span>
+                                </li>
+                                <li class="flex items-start space-x-2">
+                                    <img src="https://img.rocket.new/generatedImages/rocket_gen_img_14a0ca6db-1766548536183.png" alt="Check icon" class="w-4 h-4 flex-shrink-0 mt-0.5">
+                                    <span>Include location tags when required</span>
+                                </li>
+                                <li class="flex items-start space-x-2">
+                                    <img src="https://img.rocket.new/generatedImages/rocket_gen_img_14a0ca6db-1766548536183.png" alt="Check icon" class="w-4 h-4 flex-shrink-0 mt-0.5">
+                                    <span>Provide detailed descriptions</span>
+                                </li>
+                                <li class="flex items-start space-x-2">
+                                    <img src="https://img.rocket.new/generatedImages/rocket_gen_img_14a0ca6db-1766548536183.png" alt="Check icon" class="w-4 h-4 flex-shrink-0 mt-0.5">
+                                    <span>Follow task-specific guidelines</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Nearby Tasks -->
+                <div class="card">
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 class="text-xl font-heading font-semibold text-text-primary">Nearby Tasks</h2>
+                        <button class="text-sm text-primary hover:text-primary-600 font-medium">View Map</button>
+                    </div>
+
+                    <div class="space-y-3">
+                        <!-- Nearby Task 1 -->
+                        <div class="flex items-start space-x-3 p-3 bg-surface-50 rounded-lg hover:bg-surface-100 transition-colors cursor-pointer">
+                            <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1263f966d-1766595347304.png" alt="Location marker icon" class="w-5 h-5 flex-shrink-0 mt-1">
+                            <div class="flex-1 min-w-0">
+                                <h4 class="text-sm font-medium text-text-primary mb-1">Park Cleanup</h4>
+                                <p class="text-xs text-text-secondary mb-1">Central Park, 0.5 km away</p>
+                                <span class="text-xs text-accent font-medium">+80 points</span>
+                            </div>
+                        </div>
+
+                        <!-- Nearby Task 2 -->
+                        <div class="flex items-start space-x-3 p-3 bg-surface-50 rounded-lg hover:bg-surface-100 transition-colors cursor-pointer">
+                            <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1263f966d-1766595347304.png" alt="Location marker icon" class="w-5 h-5 flex-shrink-0 mt-1">
+                            <div class="flex-1 min-w-0">
+                                <h4 class="text-sm font-medium text-text-primary mb-1">Community Garden</h4>
+                                <p class="text-xs text-text-secondary mb-1">Green Valley, 1.2 km away</p>
+                                <span class="text-xs text-accent font-medium">+120 points</span>
+                            </div>
+                        </div>
+
+                        <!-- Nearby Task 3 -->
+                        <div class="flex items-start space-x-3 p-3 bg-surface-50 rounded-lg hover:bg-surface-100 transition-colors cursor-pointer">
+                            <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1263f966d-1766595347304.png" alt="Location marker icon" class="w-5 h-5 flex-shrink-0 mt-1">
+                            <div class="flex-1 min-w-0">
+                                <h4 class="text-sm font-medium text-text-primary mb-1">Recycling Center</h4>
+                                <p class="text-xs text-text-secondary mb-1">Eco Hub, 2.0 km away</p>
+                                <span class="text-xs text-accent font-medium">+100 points</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Mobile Bottom Navigation -->
+    <nav class="md:hidden fixed bottom-0 left-0 right-0 bg-surface border-t border-border-surface z-100">
+        <div class="flex items-center justify-around h-16">
+            <a href="user_dashboard.html" class="flex flex-col items-center space-y-1 text-text-secondary">
+                <img src="https://img.rocket.new/generatedImages/rocket_gen_img_12cc8521d-1765415999525.png" alt="Dashboard icon" class="w-6 h-6">
+                <span class="text-xs font-medium">Dashboard</span>
+            </a>
+            <a href="knowledge_quiz.html" class="flex flex-col items-center space-y-1 text-text-secondary">
+                <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1a4458d10-1767056475817.png" alt="Quiz icon" class="w-6 h-6">
+                <span class="text-xs font-medium">Quiz</span>
+            </a>
+            <a href="eco_tasks.html" class="flex flex-col items-center space-y-1 text-primary">
+                <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1355b164c-1765190595135.png" alt="Tasks icon" class="w-6 h-6">
+                <span class="text-xs font-medium">Tasks</span>
+            </a>
+            <a href="community_issues.html" class="flex flex-col items-center space-y-1 text-text-secondary">
+                <img src="https://img.rocket.new/generatedImages/rocket_gen_img_132483cf3-1765534793443.png" alt="Community icon" class="w-6 h-6">
+                <span class="text-xs font-medium">Community</span>
+            </a>
+            <a href="user_profile.html" class="flex flex-col items-center space-y-1 text-text-secondary">
+                <img src="https://img.rocket.new/generatedImages/rocket_gen_img_193b9be6e-1766708060514.png" alt="Profile icon" class="w-6 h-6">
+                <span class="text-xs font-medium">Profile</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Footer Spacer for Mobile Nav -->
+    <div class="h-16 md:hidden"></div>
+
+    <!-- Task Submission Modal (Hidden by default) -->
+    <div class="modal-overlay hidden" id="submissionModal">
+        <div class="modal-content max-w-3xl">
+            <div class="p-8">
+                <!-- Modal Header -->
+                <div class="flex items-center justify-between mb-6">
+                    <div>
+                        <h2 id="modalTaskTitle" class="text-2xl font-heading font-bold text-text-primary">Submit Task Evidence</h2>
+                        <div class="text-sm text-text-secondary mt-1">Points: <span id="modalTaskPoints">0</span></div>
+                    </div>
+                    <button id="closeModalBtn" class="p-2 hover:bg-surface-50 rounded-lg transition-colors">
+                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1d533db9c-1766571610545.png" alt="Close icon" class="w-6 h-6">
+                    </button>
+                </div>
+
+                <!-- Upload & Camera Area -->
+                <div class="mb-6">
+                    <label class="label">Photo/Video Evidence *</label>
+                    <div class="space-y-4">
+                        <input id="evidenceFile" type="file" accept="image/*,video/*" class="hidden">
+                        <div class="flex gap-3">
+                            <button id="chooseFileBtn" class="btn btn-outline">Choose File</button>
+                            <button id="startCameraBtn" class="btn btn-outline">Start Camera</button>
+                            <button id="captureBtn" class="btn btn-primary hidden">Capture</button>
+                            <button id="stopCameraBtn" class="btn btn-outline hidden">Stop Camera</button>
+                        </div>
+
+                        <div id="previewArea" class="mt-4">
+                            <video id="cameraVideo" class="w-full rounded-xl bg-black hidden" autoplay playsinline></video>
+                            <canvas id="cameraCanvas" class="w-full rounded-xl hidden"></canvas>
+                            <div id="filePreview" class="mt-2 text-sm text-text-secondary"></div>
+                        </div>
+
+                        <p class="text-xs text-text-tertiary mt-4">Supported formats: JPG, PNG, MP4 (Max 10MB)</p>
+                    </div>
+                </div>
+
+                <!-- Description Field -->
+                <div class="mb-6">
+                    <label class="label">Task Description</label>
+                    <textarea id="evidenceDescription" class="input min-h-[120px] resize-none" placeholder="Describe your task completion, challenges faced, and impact created..."></textarea>
+                </div>
+
+                <!-- Location Field -->
+                <div class="mb-6">
+                    <label class="label">Location</label>
+                    <div class="flex gap-3">
+                        <input id="evidenceLocation" type="text" class="input flex-1" placeholder="Enter location or use GPS">
+                        <button id="useGpsBtn" class="btn btn-outline flex items-center space-x-2">
+                            <img src="https://img.rocket.new/generatedImages/rocket_gen_img_18a0ac659-1767175406790.png" alt="GPS icon" class="w-5 h-5">
+                            <span>Use GPS</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="submissionStatus" class="mb-4 text-sm text-text-secondary"></div>
+
+                <!-- Action Buttons -->
+                <div class="flex flex-col sm:flex-row gap-3">
+                    <button id="submitEvidenceBtn" class="btn btn-primary flex-1 flex items-center justify-center space-x-2">
+                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1dded8c48-1767128824678.png" alt="Send icon" class="w-5 h-5">
+                        <span>Submit for Review</span>
+                    </button>
+                    <button id="cancelEvidenceBtn" class="btn btn-outline flex-1">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Reward Popup -->
+    <div id="rewardPopup" class="reward-popup hidden" aria-live="polite">
+        <div class="reward-content">
+            <div class="verified-badge" aria-hidden="true">✓</div>
+            <div class="reward-text">
+                <div class="reward-title">Task Verified!</div>
+                <div id="rewardPoints" class="reward-points">+0 points</div>
+            </div>
+            <button id="closeRewardBtn" class="reward-close" aria-label="Close">✕</button>
+        </div>
+    </div>
+</script>
+<script id="dhws-dataInjector" src="../public/dhws-data-injector.js"></script>
+<script src="../js/eco_tasks.js"></script>
+</body>
+</html>
