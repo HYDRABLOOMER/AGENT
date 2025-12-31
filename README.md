@@ -12,7 +12,7 @@ This repository contains a working prototype and supporting documentation demons
 To keep the project clear and review-friendly, the documentation is organized into focused markdown files:
 
 ### 1. Project Overview  
-📘 **[ECOQUEST_OVERVIEW.md](./ECOQUEST_OVERVIEW.md)**  
+📘 **[OVERVIEW.md](./OVERVIEW.md)**  
 Explains the problem being addressed, the core insight behind EcoQuest, and the overall system purpose.
 
 ### 2. Feature Breakdown  
