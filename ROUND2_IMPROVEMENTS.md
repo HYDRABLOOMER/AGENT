@@ -110,22 +110,6 @@ Round 2 enhancements aim to **strengthen data credibility, expand institutional 
 - Helps institutions understand public perception alongside ground reality
 
 
-## 7. Mobile Application for Participation Density
-
-### Current (Round 1)
-- Web-based prototype
-
-### Improvement (Round 2)
-- Mobile app (React Native / Flutter)
-- Push notifications for:
-  - Nearby tasks
-  - Reporting follow-ups
-  - Knowledge updates
-
-### Value
-- Increases participation frequency
-- Improves real-time data collection
-
 
 ## 8. Why These Improvements Matter
 
