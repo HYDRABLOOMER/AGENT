@@ -3,10 +3,9 @@
 
 > This document provides a conceptual and system-level overview of EcoQuest.  
 > It explains what the platform is, the problem it addresses, and the core idea behind its design.  
-> For navigation and repository structure, see 👉 **[README.md](./README.md)**  
-> For feature-level details, see 👉 **[FEATURES.md](./FEATURES.md)**
+> For navigation and repository structure, see **[README.md](./README.md)**  
+> For feature-level details, see **[FEATURES.md](./FEATURES.md)**
 
----
 
 ## 1. Project Overview
 
@@ -21,7 +20,6 @@ Gamification elements (points, badges, leaderboards) are deliberately used as an
 This repository contains a working prototype that demonstrates one complete end-to-end system loop:  
 **task execution → verification → data storage → aggregation → feedback**.
 
----
 
 ## 2. Problem Being Addressed
 
@@ -43,7 +41,6 @@ Existing solutions typically address only isolated parts of this problem:
 
 As a result, environmental governance and planning remain **reactive and assumption-driven**, rather than data-informed.
 
----
 
 ## 3. Core Idea and Insight
 
@@ -58,7 +55,6 @@ For such data to be usable, three conditions must exist simultaneously:
 EcoQuest integrates these conditions into a single system.  
 Gamification is not the end goal; it is the mechanism that ensures sufficient participation density and continuity, without which meaningful data cannot exist.
 
----
 
 ## 4. What EcoQuest Builds (System Perspective)
 
@@ -73,7 +69,6 @@ The system produces:
 
 These outputs can later be consumed by NGOs, campuses, or local bodies to identify hotspots, measure outcomes, and plan targeted interventions.
 
----
 
 ## 5. Scope of the Prototype (Round 1)
 
@@ -90,7 +85,6 @@ Specifically, it demonstrates:
 
 Certain components (AI verification, moderation interfaces, integrations) are intentionally simulated to prioritize clarity of flow and architectural correctness.
 
----
 
 ## 6. System Modules Implemented
 
@@ -105,7 +99,6 @@ Users are presented with predefined environmental tasks such as neighborhood cle
 Users select a task and submit photographic proof after completion.  
 This module generates **raw environmental action events**.
 
----
 
 ### 6.2 Verification Layer – Data Integrity
 
@@ -118,7 +111,6 @@ In the prototype:
 
 This layer demonstrates how EcoQuest enforces **data credibility before aggregation**.
 
----
 
 ### 6.3 Aggregation & Feedback Module
 
@@ -135,7 +127,6 @@ Users immediately receive feedback in the form of:
 
 This closes the loop between action and visibility.
 
----
 
 ## 7. Data Model (Simplified)
 
