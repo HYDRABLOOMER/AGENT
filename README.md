@@ -25,8 +25,9 @@ Textual Data Flow Diagrams (DFD) and technical flows showing how data moves thro
 **[ROUND2_IMPROVEMENTS.md](./ROUND2_IMPROVEMENTS.md)**  
 Planned technical and system-level enhancements for the next round.
 
-5- Prototype
-**[Prototype](./prototype)** 
+5- Prototype-
+
+**[Prototype](./prototype_link)** 
 A simple demonstration.
 
 
