@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community Issues - EcoQuest</title>
+    <link rel="stylesheet" href="../css/main.css">
+  <script type="module" async src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fecoquest4652back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.12"></script>
+  <script type="module" defer src="https://static.rocket.new/rocket-shot.js?v=0.0.2"></script>
+  </head>
+<body class="bg-background">
+    <!-- Navigation Header -->
+    <header class="bg-surface border-b border-border-surface sticky top-0 z-100">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo -->
+                <div class="flex items-center space-x-3">
+                    <svg class="w-10 h-10" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="20" cy="20" r="18" fill="#2D7D32"/>
+                        <path d="M20 8C18.5 8 17 9 17 11C17 13 18.5 14 20 14C21.5 14 23 13 23 11C23 9 21.5 8 20 8Z" fill="#4CAF50"/>
+                        <path d="M20 14C18 14 16 15.5 16 18V24C16 26.5 18 28 20 28C22 28 24 26.5 24 24V18C24 15.5 22 14 20 14Z" fill="#66BB6A"/>
+                        <ellipse cx="20" cy="30" rx="8" ry="2" fill="#1B5E20"/>
+                    </svg>
+                    <span class="text-2xl font-heading font-bold text-primary">EcoQuest</span>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center space-x-1">
+                    <a href="user_dashboard.html" class="px-4 py-2 rounded-lg text-text-secondary hover:bg-surface-50 transition-colors">Dashboard</a>
+                    <a href="knowledge_quiz.html" class="px-4 py-2 rounded-lg text-text-secondary hover:bg-surface-50 transition-colors">Quiz</a>
+                    <a href="eco_tasks.html" class="px-4 py-2 rounded-lg text-text-secondary hover:bg-surface-50 transition-colors">Tasks</a>
+                    <a href="community_issues.html" class="px-4 py-2 rounded-lg bg-primary-50 text-primary font-medium">Community</a>
+                    <a href="leaderboards.html" class="px-4 py-2 rounded-lg text-text-secondary hover:bg-surface-50 transition-colors">Leaderboards</a>
+                </div>
+
+                <!-- User Profile -->
+                <div class="flex items-center space-x-4">
+                    <button class="relative p-2 text-text-secondary hover:text-primary transition-colors">
+                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_16a438811-1766990283880.png" alt="Notifications icon" class="w-6 h-6">
+                        <span class="absolute top-1 right-1 w-2 h-2 bg-accent rounded-full"></span>
+                    </button>
+                    <a href="user_profile.html" class="flex items-center space-x-2 hover:opacity-80 transition-opacity">
+                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_16e7b66b9-1766496824802.png" alt="User profile avatar" class="w-9 h-9 rounded-full object-cover border-2 border-primary">
+                        <span class="hidden sm:block text-sm font-medium text-text-primary">Alex Rivera</span>
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Page Header -->
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-8 gap-4">
+            <div>
+                <h1 class="text-4xl font-heading font-bold text-text-primary mb-2">Community Issues</h1>
+                <p class="text-text-secondary">Report environmental problems and engage in civic discussions</p>
+            </div>
+            <button class="btn btn-primary flex items-center space-x-2 w-full sm:w-auto justify-center" onclick="document.getElementById('reportModal').classList.remove('hidden')">
+                <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1025baf95-1767056477370.png" alt="Add icon" class="w-5 h-5">
+                <span>Report Issue</span>
+            </button>
+        </div>
+
+        <!-- Filters and Search Section -->
+        <div class="card mb-8">
+            <div class="flex flex-col lg:flex-row gap-4">
+                <!-- Search Bar -->
+                <div class="flex-1 relative">
+                    <img src="https://img.rocket.new/generatedImages/rocket_gen_img_194eeb027-1764656322629.png" alt="Search icon" class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5">
+                    <input type="text" placeholder="Search issues by keyword or location..." class="input pl-12 w-full" id="searchInput">
+                </div>
+
+                <!-- Filter Buttons -->
+                <div class="flex flex-wrap gap-2">
+                    <button class="px-4 py-2 rounded-lg bg-primary text-white font-medium transition-colors hover:bg-primary-600 flex items-center space-x-2" data-filter="all">
+                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_18ff10d2f-1764660632354.png" alt="Filter icon" class="w-4 h-4">
+                        <span>All Issues</span>
+                    </button>
+                    <button class="px-4 py-2 rounded-lg bg-surface-100 text-text-secondary font-medium transition-colors hover:bg-surface-200 flex items-center space-x-2" data-filter="pollution">
+                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1077c5849-1767175405022.png" alt="Pollution icon" class="w-4 h-4">
+                        <span>Pollution</span>
+                    </button>
+                    <button class="px-4 py-2 rounded-lg bg-surface-100 text-text-secondary font-medium transition-colors hover:bg-surface-200 flex items-center space-x-2" data-filter="waste">
+                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_159832725-1767175396840.png" alt="Waste icon" class="w-4 h-4">
+                        <span>Waste</span>
+                    </button>
+                    <button class="px-4 py-2 rounded-lg bg-surface-100 text-text-secondary font-medium transition-colors hover:bg-surface-200 flex items-center space-x-2" data-filter="conservation">
+                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_180d10b34-1767175406255.png" alt="Conservation icon" class="w-4 h-4">
+                        <span>Conservation</span>
+                    </button>
+                    <button class="px-4 py-2 rounded-lg bg-surface-100 text-text-secondary font-medium transition-colors hover:bg-surface-200 flex items-center space-x-2" data-filter="policy">
+                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1b01263b9-1767067273487.png" alt="Policy icon" class="w-4 h-4">
+                        <span>Policy</span>
+                    </button>
+                </div>
+
+                <!-- Sort and Location -->
+                <div class="flex gap-2">
+                    <select class="input w-auto" id="sortSelect">
+                        <option value="recent">Most Recent</option>
+                        <option value="popular">Most Popular</option>
+                        <option value="nearby">Nearby</option>
+                        <option value="urgent">Most Urgent</option>
+                    </select>
+                    <button class="px-4 py-2 rounded-lg bg-surface-100 text-text-secondary font-medium transition-colors hover:bg-surface-200" title="Use my location">
+                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_125c30e26-1767175396292.png" alt="Location icon" class="w-5 h-5">
+                    </button>
+                </div>
+            </div>
+
+            <!-- Active Filters Display -->
+            <div class="flex items-center gap-2 mt-4 flex-wrap" id="activeFilters">
+                <span class="text-sm text-text-secondary">Active filters:</span>
+                <span class="badge badge-primary flex items-center space-x-1">
+                    <span>All Issues</span>
+                    <button class="ml-1 hover:text-primary-900">
+                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1df37886c-1766836036006.png" alt="Remove filter" class="w-3 h-3">
+                    </button>
+                </span>
+            </div>
+        </div>
+
+        <!-- Trending Topics Banner -->
+        <div class="card bg-gradient-to-r from-accent-50 to-accent-100 border-accent/20 mb-8">
+            <div class="flex items-start justify-between">
+                <div class="flex-1">
+                    <div class="flex items-center space-x-2 mb-3">
+                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1c3ccffe5-1765220117345.png" alt="Trending icon" class="w-6 h-6">
+                        <h2 class="text-xl font-heading font-semibold text-text-primary">Trending Topics</h2>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <a href="javascript:void(0)" class="px-4 py-2 bg-white rounded-lg text-sm font-medium text-accent hover:bg-accent hover:text-white transition-colors">#PlasticFreeCity</a>
+                        <a href="javascript:void(0)" class="px-4 py-2 bg-white rounded-lg text-sm font-medium text-accent hover:bg-accent hover:text-white transition-colors">#AirQuality</a>
+                        <a href="javascript:void(0)" class="px-4 py-2 bg-white rounded-lg text-sm font-medium text-accent hover:bg-accent hover:text-white transition-colors">#UrbanForestry</a>
+                        <a href="javascript:void(0)" class="px-4 py-2 bg-white rounded-lg text-sm font-medium text-accent hover:bg-accent hover:text-white transition-colors">#WaterConservation</a>
+                    </div>
+                </div>
+                <div class="hidden lg:block text-right">
+                    <div class="text-3xl font-heading font-bold text-accent mb-1">1,247</div>
+                    <div class="text-sm text-text-secondary">Active discussions</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Issues Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Main Feed -->
+            <div class="lg:col-span-2 space-y-6" id="issuesFeed">
+                <!-- Issue Card 1 - Verified NGO Post -->
+                <article class="card card-hover">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="flex items-center space-x-3">
+                            <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1a5df2297-1763292384104.png" alt="Profile picture of Emma Wilson" class="w-12 h-12 rounded-full object-cover border-2 border-success">
+                            <div>
+                                <div class="flex items-center space-x-2">
+                                    <h3 class="font-heading font-semibold text-text-primary">Emma Wilson</h3>
+                                    <span class="badge badge-success text-xs flex items-center space-x-1">
+                                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1f5e1da58-1767074237760.png" alt="Verified badge" class="w-3 h-3">
+                                        <span>Verified NGO</span>
+                                    </span>
+                                </div>
+                                <div class="flex items-center space-x-2 text-sm text-text-secondary">
+                                    <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1263f966d-1766595347304.png" alt="Location marker" class="w-4 h-4">
+                                    <span>Downtown District, 2.3 km away</span>
+                                    <span>•</span>
+                                    <span>2 hours ago</span>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="p-2 hover:bg-surface-50 rounded-lg transition-colors">
+                            <img src="https://img.rocket.new/generatedImages/rocket_gen_img_14cb06582-1767075999697.png" alt="More options" class="w-5 h-5">
+                        </button>
+                    </div>
+
+                    <div class="mb-4">
+                        <div class="flex items-center space-x-2 mb-3">
+                            <span class="badge badge-error">Pollution</span>
+                            <span class="badge badge-warning">High Priority</span>
+                        </div>
+                        <h4 class="text-xl font-heading font-semibold text-text-primary mb-2">Illegal Waste Dumping at Riverside Park</h4>
+                        <p class="text-text-secondary mb-4">Large quantities of construction debris and household waste have been illegally dumped near the riverside walking trail. This poses serious environmental risks to the local ecosystem and water quality. Immediate action required from municipal authorities.</p>
+                        
+                        <!-- Issue Image -->
+                        <div class="relative rounded-xl overflow-hidden mb-4 h-80">
+                            <img src="https://img.rocket.new/generatedImages/rocket_gen_img_124c584d4-1765371978566.png" alt="Illegal waste dumping site showing construction debris and household waste near riverside" class="w-full h-full object-cover" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop'; this.onerror=null;">
+                        </div>
+                    </div>
+
+                    <!-- Engagement Metrics -->
+                    <div class="flex items-center justify-between pt-4 border-t border-border-surface">
+                        <div class="flex items-center space-x-6">
+                            <button class="flex items-center space-x-2 text-text-secondary hover:text-primary transition-colors">
+                                <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1292990ff-1767175409178.png" alt="Like icon" class="w-5 h-5">
+                                <span class="text-sm font-medium">342</span>
+                            </button>
+                            <button class="flex items-center space-x-2 text-text-secondary hover:text-primary transition-colors">
+                                <img src="https://img.rocket.new/generatedImages/rocket_gen_img_106aa7e9e-1766941691068.png" alt="Comment icon" class="w-5 h-5">
+                                <span class="text-sm font-medium">87</span>
+                            </button>
+                            <button class="flex items-center space-x-2 text-text-secondary hover:text-primary transition-colors">
+                                <img src="https://img.rocket.new/generatedImages/rocket_gen_img_19824dad2-1767022106157.png" alt="Share icon" class="w-5 h-5">
+                                <span class="text-sm font-medium">45</span>
+                            </button>
+                        </div>
+                        <button class="btn btn-primary btn-sm h-10 px-6">Take Action</button>
+                    </div>
+
+                    <!-- Official Response -->
+                    <div class="mt-4 p-4 bg-success-50 rounded-lg border-l-4 border-success">
+                        <div class="flex items-start space-x-3">
+                            <img src="https://img.rocket.new/generatedImages/rocket_gen_img_175fc8564-1766854437088.png" alt="Official response icon" class="w-6 h-6 mt-0.5 flex-shrink-0">
+                            <div class="flex-1">
+                                <div class="flex items-center space-x-2 mb-1">
+                                    <span class="text-sm font-semibold text-success-700">Official Response</span>
+                                    <span class="text-xs text-text-tertiary">• 1 hour ago</span>
+                                </div>
+                                <p class="text-sm text-text-secondary">Municipal Waste Management Department has acknowledged this report. Cleanup crew scheduled for tomorrow morning. Thank you for reporting this issue.</p>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Issue Card 2 -->
+                <article class="card card-hover">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="flex items-center space-x-3">
+                            <img src="https://img.rocket.new/generatedImages/rocket_gen_img_184e5f4b2-1763294080263.png" alt="Profile picture of Marcus Johnson" class="w-12 h-12 rounded-full object-cover border-2 border-primary">
+                            <div>
+                                <h3 class="font-heading font-semibold text-text-primary">Marcus Johnson</h3>
+                                <div class="flex items-center space-x-2 text-sm text-text-secondary">
+                                    <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1263f966d-1766595347304.png" alt="Location marker" class="w-4 h-4">
+                                    <span>Greenwood Neighborhood, 1.8 km away</span>
+                                    <span>•</span>
+                                    <span>5 hours ago</span>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="p-2 hover:bg-surface-50 rounded-lg transition-colors">
+                            <img src="https://img.rocket.new/generatedImages/rocket_gen_img_14cb06582-1767075999697.png" alt="More options" class="w-5 h-5">
+                        </button>
+                    </div>
+
+                    <div class="mb-4">
+                        <div class="flex items-center space-x-2 mb-3">
+                            <span class="badge badge-primary">Conservation</span>
+                            <span class="badge" style="background-color: #FFE0B2; color: #F57C00;">Medium Priority</span>
+                        </div>
+                        <h4 class="text-xl font-heading font-semibold text-text-primary mb-2">Ancient Oak Tree Needs Protection</h4>
+                        <p class="text-text-secondary mb-4">A 200-year-old oak tree in our neighborhood park is showing signs of disease and requires immediate attention from arborists. This tree is a local landmark and provides habitat for numerous bird species. Community petition to save this heritage tree.</p>
+                        
+                        <!-- Issue Image -->
+                        <div class="relative rounded-xl overflow-hidden mb-4 h-80">
+                            <img src="https://img.rocket.new/generatedImages/rocket_gen_img_11739df08-1764801007064.png" alt="Ancient oak tree in neighborhood park showing signs of disease" class="w-full h-full object-cover" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop'; this.onerror=null;">
+                        </div>
+                    </div>
+
+                    <!-- Engagement Metrics -->
+                    <div class="flex items-center justify-between pt-4 border-t border-border-surface">
+                        <div class="flex items-center space-x-6">
+                            <button class="flex items-center space-x-2 text-primary transition-colors">
+                                <img src="https://img.rocket.new/generatedImages/rocket_gen_img_15d84dd8f-1765718107327.png" alt="Liked icon" class="w-5 h-5">
+                                <span class="text-sm font-medium">189</span>
+                            </button>
+                            <button class="flex items-center space-x-2 text-text-secondary hover:text-primary transition-colors">
+                                <img src="https://img.rocket.new/generatedImages/rocket_gen_img_106aa7e9e-1766941691068.png" alt="Comment icon" class="w-5 h-5">
+                                <span class="text-sm font-medium">34</span>
+                            </button>
+                            <button class="flex items-center space-x-2 text-text-secondary hover:text-primary transition-colors">
+                                <img src="https://img.rocket.new/generatedImages/rocket_gen_img_19824dad2-1767022106157.png" alt="Share icon" class="w-5 h-5">
+                                <span class="text-sm font-medium">21</span>
+                            </button>
+                        </div>
+                        <button class="btn btn-outline h-10 px-6">Support</button>
+                    </div>
+
+                    <!-- Petition Progress -->
+                    <div class="mt-4 p-4 bg-primary-50 rounded-lg">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-sm font-semibold text-primary">Community Petition</span>
+                            <span class="text-sm font-medium text-primary">487 / 500 signatures</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 97.4%"></div>
+                        </div>
+                        <p class="text-xs text-text-secondary mt-2">Almost there! 13 more signatures needed</p>
+                    </div>
+                </article>
+
+                <!-- Issue Card 3 -->
+                <article class="card card-hover">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="flex items-center space-x-3">
+                            <img src="https://img.rocket.new/generatedImages/rocket_gen_img_10458bf2c-1763293523905.png" alt="Profile picture of Sarah Chen" class="w-12 h-12 rounded-full object-cover border-2 border-primary">
+                            <div>
+                                <h3 class="font-heading font-semibold text-text-primary">Sarah Chen</h3>
+                                <div class="flex items-center space-x-2 text-sm text-text-secondary">
+                                    <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1263f966d-1766595347304.png" alt="Location marker" class="w-4 h-4">
+                                    <span>Industrial Zone, 4.2 km away</span>
+                                    <span>•</span>
+                                    <span>8 hours ago</span>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="p-2 hover:bg-surface-50 rounded-lg transition-colors">
+                            <img src="https://img.rocket.new/generatedImages/rocket_gen_img_14cb06582-1767075999697.png" alt="More options" class="w-5 h-5">
+                        </button>
+                    </div>
+
+                    <div class="mb-4">
+                        <div class="flex items-center space-x-2 mb-3">
+                            <span class="badge badge-error">Pollution</span>
+                            <span class="badge badge-warning">High Priority</span>
+                        </div>
+                        <h4 class="text-xl font-heading font-semibold text-text-primary mb-2">Air Quality Concerns Near Factory</h4>
+                        <p class="text-text-secondary mb-4">Residents near the industrial zone are experiencing respiratory issues due to poor air quality. Visible smoke emissions from nearby factory during evening hours. Request for air quality monitoring and enforcement of emission standards.</p>
+                        
+                        <!-- Issue Image -->
+                        <div class="relative rounded-xl overflow-hidden mb-4 h-80">
+                            <img src="https://img.rocket.new/generatedImages/rocket_gen_img_10a19033c-1767175409582.png" alt="Factory smoke emissions affecting air quality in industrial zone" class="w-full h-full object-cover" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop'; this.onerror=null;">
+                        </div>
+                    </div>
+
+                    <!-- Engagement Metrics -->
+                    <div class="flex items-center justify-between pt-4 border-t border-border-surface">
+                        <div class="flex items-center space-x-6">
+                            <button class="flex items-center space-x-2 text-text-secondary hover:text-primary transition-colors">
+                                <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1292990ff-1767175409178.png" alt="Like icon" class="w-5 h-5">
+                                <span class="text-sm font-medium">276</span>
+                            </button>
+                            <button class="flex items-center space-x-2 text-text-secondary hover:text-primary transition-colors">
+                                <img src="https://img.rocket.new/generatedImages/rocket_gen_img_106aa7e9e-1766941691068.png" alt="Comment icon" class="w-5 h-5">
+                                <span class="text-sm font-medium">52</span>
+                            </button>
+                            <button class="flex items-center space-x-2 text-text-secondary hover:text-primary transition-colors">
+                                <img src="https://img.rocket.new/generatedImages/rocket_gen_img_19824dad2-1767022106157.png" alt="Share icon" class="w-5 h-5">
+                                <span class="text-sm font-medium">38</span>
+                            </button>
+                        </div>
+                        <button class="btn btn-primary h-10 px-6">Take Action</button>
+                    </div>
+
+                    <!-- Community Poll -->
+                    <div class="mt-4 p-4 bg-surface-50 rounded-lg">
+                        <h5 class="text-sm font-semibold text-text-primary mb-3">Community Poll: Should stricter emission controls be enforced?</h5>
+                        <div class="space-y-3">
+                            <div>
+                                <div class="flex items-center justify-between mb-1">
+                                    <span class="text-sm text-text-secondary">Yes, immediately</span>
+                                    <span class="text-sm font-medium text-primary">78%</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 78%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex items-center justify-between mb-1">
+                                    <span class="text-sm text-text-secondary">Yes, but gradually</span>
+                                    <span class="text-sm font-medium text-primary">15%</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill bg-secondary" style="width: 15%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex items-center justify-between mb-1">
+                                    <span class="text-sm text-text-secondary">No changes needed</span>
+                                    <span class="text-sm font-medium text-primary">7%</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill bg-text-tertiary" style="width: 7%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-xs text-text-tertiary mt-3">234 votes • Poll closes in 2 days</p>
+                    </div>
+                </article>
+
+                <!-- Issue Card 4 -->
+                <article class="card card-hover">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="flex items-center space-x-3">
+                            <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1350ab5dd-1763295345389.png" alt="Profile picture of David Park" class="w-12 h-12 rounded-full object-cover border-2 border-primary">
+                            <div>
+                                <h3 class="font-heading font-semibold text-text-primary">David Park</h3>
+                                <div class="flex items-center space-x-2 text-sm text-text-secondary">
+                                    <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1263f966d-1766595347304.png" alt="Location marker" class="w-4 h-4">
+                                    <span>Lakeside Community, 3.5 km away</span>
+                                    <span>•</span>
+                                    <span>12 hours ago</span>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="p-2 hover:bg-surface-50 rounded-lg transition-colors">
+                            <img src="https://img.rocket.new/generatedImages/rocket_gen_img_14cb06582-1767075999697.png" alt="More options" class="w-5 h-5">
+                        </button>
+                    </div>
+
+                    <div class="mb-4">
+                        <div class="flex items-center space-x-2 mb-3">
+                            <span class="badge badge-primary">Waste</span>
+                            <span class="badge" style="background-color: #C8E6C9; color: #2E7D32;">Low Priority</span>
+                        </div>
+                        <h4 class="text-xl font-heading font-semibold text-text-primary mb-2">Recycling Bins Needed at Community Center</h4>
+                        <p class="text-text-secondary mb-4">Our community center lacks proper recycling facilities. Proposal to install separate bins for paper, plastic, and glass to promote sustainable waste management. Local businesses have offered to sponsor the bins.</p>
+                        
+                        <!-- Issue Image -->
+                        <div class="relative rounded-xl overflow-hidden mb-4 h-80">
+                            <img src="https://img.rocket.new/generatedImages/rocket_gen_img_14f0f9c31-1767175408998.png" alt="Community center area where recycling bins are needed" class="w-full h-full object-cover" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop'; this.onerror=null;">
+                        </div>
+                    </div>
+
+                    <!-- Engagement Metrics -->
+                    <div class="flex items-center justify-between pt-4 border-t border-border-surface">
+                        <div class="flex items-center space-x-6">
+                            <button class="flex items-center space-x-2 text-text-secondary hover:text-primary transition-colors">
+                                <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1292990ff-1767175409178.png" alt="Like icon" class="w-5 h-5">
+                                <span class="text-sm font-medium">145</span>
+                            </button>
+                            <button class="flex items-center space-x-2 text-text-secondary hover:text-primary transition-colors">
+                                <img src="https://img.rocket.new/generatedImages/rocket_gen_img_106aa7e9e-1766941691068.png" alt="Comment icon" class="w-5 h-5">
+                                <span class="text-sm font-medium">28</span>
+                            </button>
+                            <button class="flex items-center space-x-2 text-text-secondary hover:text-primary transition-colors">
+                                <img src="https://img.rocket.new/generatedImages/rocket_gen_img_19824dad2-1767022106157.png" alt="Share icon" class="w-5 h-5">
+                                <span class="text-sm font-medium">16</span>
+                            </button>
+                        </div>
+                        <button class="btn btn-outline h-10 px-6">Support</button>
+                    </div>
+                </article>
+
+                <!-- Load More Button -->
+                <div class="text-center pt-4">
+                    <button class="btn btn-ghost">
+                        <span>Load More Issues</span>
+                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1dfac41db-1767112552863.png" alt="Load more icon" class="w-5 h-5 ml-2">
+                    </button>
+                </div>
+            </div>
+
+            <!-- Right Sidebar -->
+            <div class="space-y-6">
+                <!-- Quick Stats -->
+                <div class="card">
+                    <h2 class="text-xl font-heading font-semibold text-text-primary mb-6">Community Impact</h2>
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between p-3 bg-success-50 rounded-lg">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-10 h-10 bg-success rounded-full flex items-center justify-center">
+                                    <img src="https://img.rocket.new/generatedImages/rocket_gen_img_10d875ff2-1766817002058.png" alt="Resolved icon" class="w-6 h-6">
+                                </div>
+                                <div>
+                                    <div class="text-2xl font-heading font-bold text-success">127</div>
+                                    <div class="text-xs text-text-secondary">Issues Resolved</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center justify-between p-3 bg-warning-50 rounded-lg">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-10 h-10 bg-warning rounded-full flex items-center justify-center">
+                                    <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1722799de-1766590493384.png" alt="Pending icon" class="w-6 h-6">
+                                </div>
+                                <div>
+                                    <div class="text-2xl font-heading font-bold text-warning">43</div>
+                                    <div class="text-xs text-text-secondary">In Progress</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center justify-between p-3 bg-primary-50 rounded-lg">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
+                                    <img src="https://img.rocket.new/generatedImages/rocket_gen_img_14256b291-1764684278019.png" alt="Active users icon" class="w-6 h-6">
+                                </div>
+                                <div>
+                                    <div class="text-2xl font-heading font-bold text-primary">2,847</div>
+                                    <div class="text-xs text-text-secondary">Active Members</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Top Contributors -->
+                <div class="card">
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 class="text-xl font-heading font-semibold text-text-primary">Top Contributors</h2>
+                        <a href="leaderboards.html" class="text-sm text-primary hover:text-primary-600 font-medium">View All</a>
+                    </div>
+
+                    <div class="space-y-4">
+                        <!-- Contributor 1 -->
+                        <div class="flex items-center space-x-3">
+                            <div class="relative">
+                                <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1a5df2297-1763292384104.png" alt="Profile picture of Emma Wilson" class="w-12 h-12 rounded-full object-cover border-2 border-accent">
+                                <div class="absolute -bottom-1 -right-1 w-6 h-6 bg-accent rounded-full flex items-center justify-center text-white text-xs font-bold border-2 border-surface">1</div>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <h4 class="font-medium text-text-primary truncate">Emma Wilson</h4>
+                                <p class="text-xs text-text-secondary">34 issues reported</p>
+                            </div>
+                            <div class="text-right">
+                                <div class="text-sm font-semibold text-primary">1,245</div>
+                                <div class="text-xs text-text-tertiary">points</div>
+                            </div>
+                        </div>
+
+                        <!-- Contributor 2 -->
+                        <div class="flex items-center space-x-3">
+                            <div class="relative">
+                                <img src="https://img.rocket.new/generatedImages/rocket_gen_img_184e5f4b2-1763294080263.png" alt="Profile picture of Marcus Johnson" class="w-12 h-12 rounded-full object-cover border-2 border-primary">
+                                <div class="absolute -bottom-1 -right-1 w-6 h-6 bg-primary rounded-full flex items-center justify-center text-white text-xs font-bold border-2 border-surface">2</div>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <h4 class="font-medium text-text-primary truncate">Marcus Johnson</h4>
+                                <p class="text-xs text-text-secondary">28 issues reported</p>
+                            </div>
+                            <div class="text-right">
+                                <div class="text-sm font-semibold text-primary">1,089</div>
+                                <div class="text-xs text-text-tertiary">points</div>
+                            </div>
+                        </div>
+
+                        <!-- Contributor 3 -->
+                        <div class="flex items-center space-x-3">
+                            <div class="relative">
+                                <img src="https://img.rocket.new/generatedImages/rocket_gen_img_10458bf2c-1763293523905.png" alt="Profile picture of Sarah Chen" class="w-12 h-12 rounded-full object-cover border-2 border-secondary">
+                                <div class="absolute -bottom-1 -right-1 w-6 h-6 bg-secondary rounded-full flex items-center justify-center text-white text-xs font-bold border-2 border-surface">3</div>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <h4 class="font-medium text-text-primary truncate">Sarah Chen</h4>
+                                <p class="text-xs text-text-secondary">25 issues reported</p>
+                            </div>
+                            <div class="text-right">
+                                <div class="text-sm font-semibold text-primary">967</div>
+                                <div class="text-xs text-text-tertiary">points</div>
+                            </div>
+                        </div>
+
+                        <!-- Current User -->
+                        <div class="flex items-center space-x-3 p-3 bg-success-50 rounded-lg border-2 border-success">
+                            <div class="relative">
+                                <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1c2c3237e-1766481832967.png" alt="Your profile picture" class="w-12 h-12 rounded-full object-cover border-2 border-success">
+                                <div class="absolute -bottom-1 -right-1 w-6 h-6 bg-success rounded-full flex items-center justify-center text-white text-xs font-bold border-2 border-surface">12</div>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <h4 class="font-medium text-text-primary truncate">You (Alex Rivera)</h4>
+                                <p class="text-xs text-text-secondary">8 issues reported</p>
+                            </div>
+                            <div class="text-right">
+                                <div class="text-sm font-semibold text-primary">423</div>
+                                <div class="text-xs text-text-tertiary">points</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Nearby Issues Map Placeholder -->
+                <div class="card">
+                    <h2 class="text-xl font-heading font-semibold text-text-primary mb-6">Nearby Issues</h2>
+                    <div class="bg-surface-100 rounded-xl h-64 flex items-center justify-center relative overflow-hidden" role="img" aria-label="Interactive map showing nearby environmental issues with location markers">
+                        <!-- Simple Map Illustration -->
+                        <svg viewBox="0 0 400 300" class="w-full h-full">
+                            <!-- Map Background -->
+                            <rect width="400" height="300" fill="#E8F5E9"/>
+                            
+                            <!-- Roads -->
+                            <path d="M0 150 L400 150" stroke="#CCCCCC" stroke-width="3"/>
+                            <path d="M200 0 L200 300" stroke="#CCCCCC" stroke-width="3"/>
+                            
+                            <!-- Park Areas -->
+                            <circle cx="100" cy="100" r="40" fill="#A5D6A7" opacity="0.5"/>
+                            <circle cx="300" cy="200" r="35" fill="#A5D6A7" opacity="0.5"/>
+                            
+                            <!-- Issue Markers -->
+                            <g transform="translate(120, 80)">
+                                <circle cx="0" cy="0" r="12" fill="#D32F2F"/>
+                                <circle cx="0" cy="0" r="8" fill="#FFFFFF"/>
+                                <text x="0" y="4" text-anchor="middle" font-size="10" fill="#D32F2F" font-weight="bold">!</text>
+                            </g>
+                            
+                            <g transform="translate(280, 180)">
+                                <circle cx="0" cy="0" r="12" fill="#FF9800"/>
+                                <circle cx="0" cy="0" r="8" fill="#FFFFFF"/>
+                                <text x="0" y="4" text-anchor="middle" font-size="10" fill="#FF9800" font-weight="bold">!</text>
+                            </g>
+                            
+                            <g transform="translate(200, 150)">
+                                <circle cx="0" cy="0" r="12" fill="#4CAF50"/>
+                                <circle cx="0" cy="0" r="8" fill="#FFFFFF"/>
+                                <text x="0" y="4" text-anchor="middle" font-size="10" fill="#4CAF50" font-weight="bold">✓</text>
+                            </g>
+                            
+                            <!-- Current Location -->
+                            <g transform="translate(200, 150)">
+                                <circle cx="0" cy="0" r="20" fill="#2D7D32" opacity="0.2"/>
+                                <circle cx="0" cy="0" r="6" fill="#2D7D32"/>
+                            </g>
+                            
+                            <!-- Legend -->
+                            <g transform="translate(10, 270)">
+                                <circle cx="8" cy="0" r="5" fill="#D32F2F"/>
+                                <text x="18" y="4" font-size="10" fill="#666666">High Priority</text>
+                                
+                                <circle cx="100" cy="0" r="5" fill="#FF9800"/>
+                                <text x="110" y="4" font-size="10" fill="#666666">Medium</text>
+                                
+                                <circle cx="180" cy="0" r="5" fill="#4CAF50"/>
+                                <text x="190" y="4" font-size="10" fill="#666666">Resolved</text>
+                            </g>
+                        </svg>
+                        
+                        <button class="absolute bottom-4 right-4 btn btn-primary h-10 px-4 flex items-center space-x-2">
+                            <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1e89222a1-1765281508820.png" alt="View map icon" class="w-4 h-4">
+                            <span class="text-sm">View Full Map</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Recent Activity -->
+                <div class="card">
+                    <h2 class="text-xl font-heading font-semibold text-text-primary mb-6">Recent Activity</h2>
+                    <div class="space-y-4">
+                        <div class="flex items-start space-x-3 text-sm">
+                            <img src="https://img.rocket.new/generatedImages/rocket_gen_img_106aa7e9e-1766941691068.png" alt="Comment icon" class="w-5 h-5 mt-0.5 flex-shrink-0">
+                            <div>
+                                <p class="text-text-primary"><span class="font-medium">Emma Wilson</span> commented on <span class="font-medium">Illegal Waste Dumping</span></p>
+                                <p class="text-text-tertiary text-xs mt-1">5 minutes ago</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-3 text-sm">
+                            <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1292990ff-1767175409178.png" alt="Like icon" class="w-5 h-5 mt-0.5 flex-shrink-0">
+                            <div>
+                                <p class="text-text-primary"><span class="font-medium">Marcus Johnson</span> supported <span class="font-medium">Ancient Oak Tree Protection</span></p>
+                                <p class="text-text-tertiary text-xs mt-1">12 minutes ago</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-3 text-sm">
+                            <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1a9e3b4f6-1767175406869.png" alt="New issue icon" class="w-5 h-5 mt-0.5 flex-shrink-0">
+                            <div>
+                                <p class="text-text-primary"><span class="font-medium">Sarah Chen</span> reported <span class="font-medium">Air Quality Concerns</span></p>
+                                <p class="text-text-tertiary text-xs mt-1">1 hour ago</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-3 text-sm">
+                            <img src="https://img.rocket.new/generatedImages/rocket_gen_img_10d875ff2-1766817002058.png" alt="Resolved icon" class="w-5 h-5 mt-0.5 flex-shrink-0">
+                            <div>
+                                <p class="text-text-primary"><span class="font-medium">Municipal Authority</span> resolved <span class="font-medium">Street Light Repair</span></p>
+                                <p class="text-text-tertiary text-xs mt-1">3 hours ago</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Report Issue Modal -->
+    <div id="reportModal" class="modal-overlay hidden">
+        <div class="modal-content max-w-3xl">
+            <div class="p-8">
+                <!-- Modal Header -->
+                <div class="flex items-center justify-between mb-6">
+                    <h2 class="text-2xl font-heading font-bold text-text-primary">Report Environmental Issue</h2>
+                    <button onclick="document.getElementById('reportModal').classList.add('hidden')" class="p-2 hover:bg-surface-50 rounded-lg transition-colors">
+                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_16b05dca4-1765225109359.png" alt="Close modal" class="w-6 h-6">
+                    </button>
+                </div>
+
+                <!-- Report Form -->
+                <form class="space-y-6">
+                    <!-- Issue Title -->
+                    <div>
+                        <label class="label">Issue Title *</label>
+                        <input type="text" class="input w-full" placeholder="Brief description of the issue" required>
+                    </div>
+
+                    <!-- Issue Category -->
+                    <div>
+                        <label class="label">Category *</label>
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                            <label class="flex items-center space-x-2 p-3 border-2 border-border-surface rounded-lg cursor-pointer hover:border-primary transition-colors">
+                                <input type="radio" name="category" value="pollution" class="text-primary">
+                                <span class="text-sm font-medium">Pollution</span>
+                            </label>
+                            <label class="flex items-center space-x-2 p-3 border-2 border-border-surface rounded-lg cursor-pointer hover:border-primary transition-colors">
+                                <input type="radio" name="category" value="waste" class="text-primary">
+                                <span class="text-sm font-medium">Waste</span>
+                            </label>
+                            <label class="flex items-center space-x-2 p-3 border-2 border-border-surface rounded-lg cursor-pointer hover:border-primary transition-colors">
+                                <input type="radio" name="category" value="conservation" class="text-primary">
+                                <span class="text-sm font-medium">Conservation</span>
+                            </label>
+                            <label class="flex items-center space-x-2 p-3 border-2 border-border-surface rounded-lg cursor-pointer hover:border-primary transition-colors">
+                                <input type="radio" name="category" value="policy" class="text-primary">
+                                <span class="text-sm font-medium">Policy</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Priority Level -->
+                    <div>
+                        <label class="label">Priority Level *</label>
+                        <select class="input w-full" required>
+                            <option value="">Select priority level</option>
+                            <option value="low">Low - Can be addressed over time</option>
+                            <option value="medium">Medium - Needs attention soon</option>
+                            <option value="high">High - Requires immediate action</option>
+                        </select>
+                    </div>
+
+                    <!-- Description -->
+                    <div>
+                        <label class="label">Detailed Description *</label>
+                        <textarea class="input w-full min-h-32 resize-y" placeholder="Provide detailed information about the issue, including when you noticed it and any relevant context..." required></textarea>
+                    </div>
+
+                    <!-- Location -->
+                    <div>
+                        <label class="label">Location *</label>
+                        <div class="flex gap-3">
+                            <input type="text" class="input flex-1" placeholder="Enter address or location" required>
+                            <button type="button" class="btn btn-outline h-12 px-6 flex items-center space-x-2">
+                                <img src="https://img.rocket.new/generatedImages/rocket_gen_img_12c87929d-1767001754561.png" alt="Use location icon" class="w-5 h-5">
+                                <span>Use My Location</span>
+                            </button>
+                        </div>
+                        <p class="text-xs text-text-tertiary mt-2">Your exact location will be kept private. Only approximate area will be shown publicly.</p>
+                    </div>
+
+                    <!-- Image Upload -->
+                    <div>
+                        <label class="label">Upload Photos (Optional)</label>
+                        <div class="border-2 border-dashed border-border-surface rounded-xl p-8 text-center hover:border-primary transition-colors cursor-pointer">
+                            <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1bcf67d9b-1766986260490.png" alt="Upload icon" class="w-12 h-12 mx-auto mb-3">
+                            <p class="text-text-primary font-medium mb-1">Click to upload or drag and drop</p>
+                            <p class="text-sm text-text-secondary">PNG, JPG or JPEG (max. 5MB each, up to 5 photos)</p>
+                            <input type="file" class="hidden" accept="image/*" multiple>
+                        </div>
+                    </div>
+
+                    <!-- Privacy Options -->
+                    <div class="p-4 bg-surface-50 rounded-lg">
+                        <div class="flex items-start space-x-3">
+                            <input type="checkbox" id="anonymous" class="mt-1">
+                            <div>
+                                <label for="anonymous" class="text-sm font-medium text-text-primary cursor-pointer">Post anonymously</label>
+                                <p class="text-xs text-text-secondary mt-1">Your name will not be displayed publicly, but authorities can still contact you if needed.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Form Actions -->
+                    <div class="flex items-center justify-end space-x-3 pt-4 border-t border-border-surface">
+                        <button type="button" onclick="document.getElementById('reportModal').classList.add('hidden')" class="btn btn-ghost">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Submit Report</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Bottom Navigation -->
+    <nav class="md:hidden fixed bottom-0 left-0 right-0 bg-surface border-t border-border-surface z-100">
+        <div class="flex items-center justify-around h-16">
+            <a href="user_dashboard.html" class="flex flex-col items-center space-y-1 text-text-secondary">
+                <img src="https://img.rocket.new/generatedImages/rocket_gen_img_12cc8521d-1765415999525.png" alt="Dashboard icon" class="w-6 h-6">
+                <span class="text-xs font-medium">Dashboard</span>
+            </a>
+            <a href="knowledge_quiz.html" class="flex flex-col items-center space-y-1 text-text-secondary">
+                <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1a4458d10-1767056475817.png" alt="Quiz icon" class="w-6 h-6">
+                <span class="text-xs font-medium">Quiz</span>
+            </a>
+            <a href="eco_tasks.html" class="flex flex-col items-center space-y-1 text-text-secondary">
+                <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1355b164c-1765190595135.png" alt="Tasks icon" class="w-6 h-6">
+                <span class="text-xs font-medium">Tasks</span>
+            </a>
+            <a href="community_issues.html" class="flex flex-col items-center space-y-1 text-primary">
+                <img src="https://img.rocket.new/generatedImages/rocket_gen_img_132483cf3-1765534793443.png" alt="Community icon" class="w-6 h-6">
+                <span class="text-xs font-medium">Community</span>
+            </a>
+            <a href="user_profile.html" class="flex flex-col items-center space-y-1 text-text-secondary">
+                <img src="https://img.rocket.new/generatedImages/rocket_gen_img_193b9be6e-1766708060514.png" alt="Profile icon" class="w-6 h-6">
+                <span class="text-xs font-medium">Profile</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Footer Spacer for Mobile Nav -->
+    <div class="h-16 md:hidden"></div>
+
+    <!-- Copyright Footer -->
+    <footer class="bg-surface border-t border-border-surface mt-16 py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center text-sm text-text-secondary">
+                <p>© 2025 EcoQuest. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+<script id="dhws-dataInjector" src="../public/dhws-data-injector.js"></script>
+</body>
+</html>
