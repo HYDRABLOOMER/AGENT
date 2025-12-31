@@ -200,30 +200,6 @@ Quantitative data shows what is happening. Sentiment data explains why. Together
 Adds qualitative context to verified action and report data, completing the intelligence loop.
 
 
-## **Feature Prioritization (Round 1 vs Expansion)**
 
-### **Focus in Round 1**
-
-* Task-Based Environment (end-to-end loop)
-* Verification (simulated)
-* Aggregation & leaderboards
-* Basic reporting
-
-### **Deferred / Expanded in Round 2**
-
-* Advanced AI verification
-* Full civic sentiment dashboards
-* Large-scale opinion feeds
-* Event-based modules (Ecothons)
-
-
-## **Final Design Philosophy**
-
-EcoQuest is not built to maximize screen time or gamification novelty.
-It is built to make environmental action visible, verifiable, and usable at scale.
-
-Every feature exists to serve one goal:
-
-### **Turn citizen participation into reliable environmental intelligence.**
 
 
