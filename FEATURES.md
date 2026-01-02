@@ -44,7 +44,7 @@ Most environmental efforts today disappear after execution. This module ensures 
 #### **Verification Layer**
 
 * Automated checks using ML/DL models (simulated in Round 1)
-* Manual verification by NGOs or institutional moderators for credibility
+* Manual verification by NGOs or institutional moderators for credibility. This is to ensure proper verification of the task which is done.
 * Only verified tasks enter the aggregate dataset
 
 #### **Leaderboards & Rankings**
@@ -73,15 +73,17 @@ Converts citizen effort into verified environmental action records that form the
 
 The Knowledge-Based Environment is not designed as an exam or pure learning platform. Its role is to improve the quality and interpretability of user-generated data.
 
-### **What it does**
-
-Users engage with short, contextual learning content followed by lightweight quizzes tied to real environmental issues and current conditions. A quiz is generated in which users can participate and compete in real time.
-
 ### **Why it exists**
 
 Uninformed participation leads to noisy or misleading data. This module ensures that users understand what they are reporting or acting upon, improving downstream reliability.
 
-### **Key features**
+### **What it does**
+
+Users engage with short, contextual learning content followed by lightweight quizzes tied to real environmental issues and current conditions. A quiz is generated in which users can participate and compete in real time.
+
+
+
+### **Main features of knowledge based environment**
 
 #### **Context-Aware Learning Feed**
 
@@ -95,17 +97,17 @@ Uninformed participation leads to noisy or misleading data. This module ensures 
 
 #### **Live & Timed Quiz Events**
 
-* Periodic live quizzes to encourage engagement
+* Live quizzes are generated  periodically to encourage engagement.
 * Real-time leaderboards for transparency
 
 #### **EcoPoints & Progression**
 
-* Quiz performance contributes to EcoPoints
+* Quiz performance contributes to EcoPoints. Users get the ecopoints for performing tasks or attending quiz.
 * Higher knowledge scores unlock higher-impact tasks or reporting privileges
 
 #### **Beginner-to-Advanced Progression**
 
-* New users face simple questions
+* Easy questions will be given to new users.
 * Difficulty increases gradually as users advance
 
 ### **System role**
