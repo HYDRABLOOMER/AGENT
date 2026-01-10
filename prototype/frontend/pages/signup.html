@@ -68,7 +68,7 @@ body {
     <nav class="max-w-7xl mx-auto px-4 h-16 flex justify-between items-center">
         <span class="text-2xl font-bold text-green-700">EcoQuest</span>
         <div class="space-x-4">
-            <a href="login.html">Login</a>
+            <a href="/">Login</a>
             <a href="signup.html" class="text-green-700 font-medium">Sign Up</a>
         </div>
     </nav>
@@ -82,8 +82,8 @@ body {
 
         <form id="signupForm" class="space-y-4">
 
-            <input type="text" class="input" placeholder="Full Name" required>
-            <input type="email" class="input" placeholder="Email" required>
+            <input type="text" id="name" class="input" placeholder="Full Name" required>
+            <input type="email" id='email' class="input" placeholder="Email" required>
             <input type="password" id="password" class="input" placeholder="Password" required>
             <input type="password" id="confirmPassword" class="input" placeholder="Confirm Password" required>
 
@@ -95,22 +95,57 @@ body {
 
         <p class="text-center text-sm mt-6">
             Already have an account?
-            <a href="login.html" class="link">Log in</a>
+            <a href="/" class="link">Log in</a>
         </p>
 
     </div>
 </div>
 
 <script>
-document.getElementById('signupForm').addEventListener('submit', e => {
-    e.preventDefault();
-    if (password.value !== confirmPassword.value) {
+document.getElementById("signupForm").addEventListener("submit", async function (event) {
+    event.preventDefault();   // 🔑 stop default submit
+
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value.trim();
+    const confirmPassword = document.getElementById("confirmPassword").value.trim();
+
+    if (!name || !email || !password || !confirmPassword) {
+        alert("All fields are required");
+        return;
+    }
+
+    if (password !== confirmPassword) {
         alert("Passwords do not match");
         return;
     }
-    window.location.href = 'user_dashboard.html';
+
+    try {
+        const response = await fetch("http://localhost:5000/auth/signup", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ name, email, password })
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            alert(data.message || "Signup failed");
+            return;
+        }
+
+        alert("Signup successful. Please login.");
+        window.location.href = "/";
+
+    } catch (error) {
+        console.error(error);
+        alert("Server error. Try again later.");
+    }
 });
 </script>
+
 
 </body>
 </html>

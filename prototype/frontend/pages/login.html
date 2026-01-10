@@ -115,12 +115,12 @@ body {
 
             <div>
                 <label>Email</label>
-                <input type="email" class="input" placeholder="you@example.com" required>
+                <input type="email" id='email' class="input" placeholder="you@example.com" required>
             </div>
 
             <div>
                 <label>Password</label>
-                <input type="password" class="input" placeholder="••••••••" required>
+                <input type="password" id="password" class="input" placeholder="••••••••" required>
             </div>
 
             <div class="text-right text-sm">
@@ -135,18 +135,53 @@ body {
 
         <p class="text-center text-sm mt-6">
             Don’t have an account?
-            <a href="signup.html" class="link">Sign up</a>
+            <a href="signup" class="link">Sign up</a>
         </p>
 
     </div>
 </div>
 
 <script>
-document.getElementById('loginForm').addEventListener('submit', e => {
-    e.preventDefault();
-    window.location.href = 'user_dashboard.html';
+document.getElementById("loginForm").addEventListener("submit", async function (event) {
+    event.preventDefault();   // 🔑 stop default browser submit
+
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value.trim();
+
+    if (!email || !password) {
+        alert("All fields are required");
+        return;
+    }
+
+    try {
+        const response = await fetch("/auth/login", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ email, password })
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            alert(data.message || "Login failed");
+            return;
+        }
+
+        // save token
+        localStorage.setItem("ecoquest_token", data.token);
+
+        // redirect
+        window.location.href = "user_dashboard";
+
+    } catch (error) {
+        console.error(error);
+        alert("Server error. Try again later.");
+    }
 });
 </script>
+
 
 </body>
 </html>
