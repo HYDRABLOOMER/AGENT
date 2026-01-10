@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Login - EcoQuest</title>
+
+<link rel="stylesheet" href="../css/main.css">
+
+<style>
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background:
+        linear-gradient(
+            rgba(236, 248, 240, 0.65),
+            rgba(247, 255, 249, 0.65)
+        ),
+        url("./pics/4.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.auth-center-wrapper {
+    min-height: calc(100vh - 64px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 16px;
+}
+
+.auth-card {
+    background: #fff;
+    border-radius: 18px;
+    padding: 36px;
+    max-width: 420px;
+    width: 100%;
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.08);
+}
+
+.auth-card h1 {
+    text-align: center;
+}
+
+.auth-card p {
+    text-align: center;
+}
+
+.auth-card label {
+    font-size: 14px;
+    color: #475569;
+    margin-bottom: 6px;
+    display: block;
+}
+
+.input {
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 10px;
+    border: 1px solid #d1fae5;
+    font-size: 15px;
+}
+
+.input:focus {
+    outline: none;
+    border-color: #10b981;
+    box-shadow: 0 0 0 3px rgba(16,185,129,0.15);
+}
+
+.btn-primary {
+    width: 100%;
+    padding: 12px;
+    border-radius: 999px;
+    font-size: 16px;
+    font-weight: 600;
+    background: linear-gradient(180deg, #10b981, #059669);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(16,185,129,0.25);
+}
+
+.link {
+    color: #059669;
+    font-weight: 500;
+}
+</style>
+</head>
+
+<body>
+
+<header class="bg-white border-b">
+    <nav class="max-w-7xl mx-auto px-4 h-16 flex justify-between items-center">
+        <span class="text-2xl font-bold text-green-700">EcoQuest</span>
+        <div class="space-x-4">
+            <a href="login.html" class="text-green-700 font-medium">Login</a>
+            <a href="signup.html">Sign Up</a>
+        </div>
+    </nav>
+</header>
+
+<div class="auth-center-wrapper">
+    <div class="auth-card">
+
+        <h1 class="text-2xl font-bold mb-2">Welcome back 👋</h1>
+        <p class="text-gray-500 mb-6">Log in to continue your eco journey</p>
+
+        <form id="loginForm" class="space-y-4">
+
+            <div>
+                <label>Email</label>
+                <input type="email" class="input" placeholder="you@example.com" required>
+            </div>
+
+            <div>
+                <label>Password</label>
+                <input type="password" class="input" placeholder="••••••••" required>
+            </div>
+
+            <div class="text-right text-sm">
+                <a href="#" class="link">Forgot password?</a>
+            </div>
+
+            <button type="submit" class="btn-primary">
+                Log in
+            </button>
+
+        </form>
+
+        <p class="text-center text-sm mt-6">
+            Don’t have an account?
+            <a href="signup.html" class="link">Sign up</a>
+        </p>
+
+    </div>
+</div>
+
+<script>
+document.getElementById('loginForm').addEventListener('submit', e => {
+    e.preventDefault();
+    window.location.href = 'user_dashboard.html';
+});
+</script>
+
+</body>
+</html>
