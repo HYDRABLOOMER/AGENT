@@ -143,7 +143,7 @@ body {
 
 <script>
 document.getElementById("loginForm").addEventListener("submit", async function (event) {
-    event.preventDefault();   // 🔑 stop default browser submit
+    event.preventDefault(); 
 
     const email = document.getElementById("email").value.trim();
     const password = document.getElementById("password").value.trim();
@@ -159,6 +159,7 @@ document.getElementById("loginForm").addEventListener("submit", async function (
             headers: {
                 "Content-Type": "application/json"
             },
+            credentials: "include",   
             body: JSON.stringify({ email, password })
         });
 
@@ -169,11 +170,7 @@ document.getElementById("loginForm").addEventListener("submit", async function (
             return;
         }
 
-        // save token
-        localStorage.setItem("ecoquest_token", data.token);
-
-        // redirect
-        window.location.href = "user_dashboard";
+        window.location.href = "/user_dashboard";
 
     } catch (error) {
         console.error(error);

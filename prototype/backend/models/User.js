@@ -14,7 +14,37 @@ const userSchema = new mongoose.Schema(
     password: {
       type: String,
       required: true
-    }
+    },
+    
+  ecoPoints: {
+    type: Number,
+    default: 0
+  },
+
+  streak: {
+    type: Number,
+    default: 0
+  },
+
+  rank: {
+    type: Number,
+    default: null
+  },
+
+  completedTasks: {
+    type: Number,
+    default: 0
+  },
+
+  completedQuizzes: {
+    type: Number,
+    default: 0
+  },
+
+  createdAt: {
+    type: Date,
+    default: Date.now
+  }
   },
   { timestamps: true }
 );
