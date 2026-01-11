@@ -13,6 +13,16 @@ const verificationResultSchema = new mongoose.Schema(
     fraudScore: {
       type: Number
     },
+    reason: {
+      type: String,
+      default: "",
+      trim: true
+    },
+    explanation: {
+      type: String,
+      default: "",
+      trim: true
+    },
     flags: {
       type: [String],
       default: []

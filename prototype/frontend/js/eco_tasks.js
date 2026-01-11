@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', function () {
   async function refreshActiveTasks() {
     if (!api) return;
     try {
-      const data = await api.getUserSubmissions({ status: 'pending,pending_verification,manual_review' });
+      const data = await api.getUserSubmissions({ status: 'pending,pending_verification,manual_review,rejected' });
       renderActiveTasks(data && data.submissions ? data.submissions : []);
     } catch (error) {
       console.error(error);
@@ -173,13 +173,16 @@ document.addEventListener('DOMContentLoaded', function () {
         const title = escapeHtml(s.taskTitle || 'Task');
         const meta = statusLabel(s.status);
         const rel = formatRelativeDays(s.updatedAt || s.createdAt);
+        const reason = s && s.verification && typeof s.verification.reason === 'string' ? s.verification.reason : '';
         const subText =
           String(s.status || '').toLowerCase() === 'manual_review'
-            ? 'Sent for manual review'
+            ? (reason ? reason : 'Sent for manual review')
             : String(s.status || '').toLowerCase() === 'pending_verification'
               ? 'Awaiting verification'
               : String(s.status || '').toLowerCase() === 'pending'
                 ? 'In progress'
+                : String(s.status || '').toLowerCase() === 'rejected'
+                  ? (reason ? reason : 'Rejected')
                 : '';
 
         return `
@@ -214,6 +217,18 @@ document.addEventListener('DOMContentLoaded', function () {
         const description = escapeHtml(t.description || '');
         const category = escapeHtml(t.category || 'task');
         const points = typeof t.points === 'number' ? t.points : 0;
+        const status = String(t.submissionStatus || '').toLowerCase();
+        const reason = typeof t.submissionReason === 'string' ? t.submissionReason : '';
+
+        const isBlocked = status === 'pending' || status === 'pending_verification' || status === 'manual_review' || status === 'verified';
+        const buttonLabel =
+          status === 'manual_review'
+            ? 'Under Review'
+            : status === 'pending_verification'
+              ? 'Pending Verification'
+              : status === 'pending'
+                ? 'In Progress'
+                : 'Start Task';
 
         return `
           <div class="card card-hover border-l-4 border-l-success">
@@ -236,10 +251,11 @@ document.addEventListener('DOMContentLoaded', function () {
                 </div>
 
                 <div class="flex flex-wrap gap-3">
-                  <button class="btn btn-primary start-task-btn flex items-center space-x-2" data-task-id="${t.id}" data-points="${points}" data-task="${title}">
-                    <span>Start Task</span>
+                  <button class="btn btn-primary start-task-btn flex items-center space-x-2" data-task-id="${t.id}" data-points="${points}" data-task="${title}" ${isBlocked ? 'disabled' : ''}>
+                    <span>${escapeHtml(buttonLabel)}</span>
                   </button>
                 </div>
+                ${status === 'rejected' && reason ? `<div class="text-xs text-error-700 mt-2">${escapeHtml(reason)}</div>` : ''}
               </div>
             </div>
           </div>
@@ -293,6 +309,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   async function openTaskModalFromButton(btn) {
+    if (btn.hasAttribute('disabled')) return;
     const task = btn.getAttribute('data-task') || 'Task';
     const points = parseInt(btn.getAttribute('data-points') || '0', 10);
     const taskId = btn.getAttribute('data-task-id');
@@ -325,7 +342,7 @@ document.addEventListener('DOMContentLoaded', function () {
       submitEvidenceBtn.disabled = false;
     } catch (error) {
       console.error(error);
-      submissionStatus.textContent = 'Unable to start task. Please try again.';
+      submissionStatus.textContent = error && error.message ? error.message : 'Unable to start task. Please try again.';
       submitEvidenceBtn.disabled = true;
     }
   }
@@ -483,9 +500,11 @@ document.addEventListener('DOMContentLoaded', function () {
       if (result.status === 'pending_verification') {
         submissionStatus.textContent = 'Evidence submitted. Pending verification.';
       } else if (result.status === 'manual_review') {
-        submissionStatus.textContent = 'Submitted. Sent for manual review.';
+        const reason = result && result.verification && typeof result.verification.reason === 'string' ? result.verification.reason : '';
+        submissionStatus.textContent = reason ? reason : 'Submitted. Sent for manual review.';
       } else if (result.status === 'rejected') {
-        submissionStatus.textContent = 'Submission rejected. Please try another task.';
+        const reason = result && result.verification && typeof result.verification.reason === 'string' ? result.verification.reason : '';
+        submissionStatus.textContent = reason ? reason : 'Submission rejected. Please try another task.';
       } else if (result.status === 'verified') {
         if (typeof result.totalPoints === 'number') setPointsEarned(result.totalPoints);
         submissionStatus.textContent = `Task verified and completed — +${result.pointsAwarded || currentPoints} points!`;

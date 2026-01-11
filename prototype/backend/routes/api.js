@@ -12,6 +12,7 @@ const IssueReport = require("../models/IssueReport.js");
 const KnowledgeAttempt = require("../models/KnowledgeAttempt.js");
 const VerificationResult = require("../models/VerificationResult.js");
 const TaskEvent = require("../models/TaskEvent.js");
+const { semanticVerification } = require("../ai/semanticVerification.js");
 
 const router = express.Router();
 
@@ -38,6 +39,23 @@ function decideVerification({ aiConfidence, fraudScore, minConfidence }) {
   if (aiConfidence >= high && (typeof fraudScore !== "number" || fraudScore <= 0.3)) return "approved";
   if (aiConfidence >= mid) return "manual_review";
   return "rejected";
+}
+
+function geminiErrorToReason(err) {
+  const raw = err && typeof err.message === "string" ? err.message : String(err || "");
+  const msg = raw.toLowerCase();
+
+  if (!raw) return "AI verification failed";
+  if (msg.includes("api key") || msg.includes("apikey") || msg.includes("key")) return "AI verification failed: invalid API key";
+  if (msg.includes("permission") || msg.includes("denied") || msg.includes("unauthorized")) return "AI verification failed: permission denied";
+  if (msg.includes("quota") || msg.includes("rate") || msg.includes("429") || msg.includes("resource_exhausted")) {
+    return "AI verification failed: quota exceeded";
+  }
+  if (msg.includes("timeout") || msg.includes("fetch") || msg.includes("network") || msg.includes("econnreset") || msg.includes("enotfound")) {
+    return "AI verification failed: network error";
+  }
+  if (msg.includes("json") || msg.includes("mime")) return "AI verification failed: invalid AI response";
+  return "AI verification failed";
 }
 
 function startOfDayUtc(d) {
@@ -311,14 +329,28 @@ router.get("/tasks", authMiddleware, async (req, res, next) => {
     );
 
     const userSubmissionsByTask = allSubmissions.reduce((acc, s) => {
-      if (String(s.userId) === String(req.user._id)) {
-        acc[String(s.taskId)] = s;
+      if (String(s.userId) !== String(req.user._id)) return acc;
+      const key = String(s.taskId);
+      const prev = acc[key];
+      if (!prev) {
+        acc[key] = s;
+        return acc;
       }
+      const prevTs = new Date(prev.updatedAt || prev.createdAt || 0).getTime();
+      const nextTs = new Date(s.updatedAt || s.createdAt || 0).getTime();
+      if (nextTs >= prevTs) acc[key] = s;
       return acc;
     }, {});
 
     // Hide tasks that anyone has already verified
-    const visibleTasks = tasks.filter((t) => !globallyVerifiedTaskIds.has(String(t._id)));
+    // Hide tasks the current user is already working on / waiting review for.
+    const activeUserStatuses = new Set(["pending", "pending_verification", "manual_review", "verified"]);
+    const visibleTasks = tasks.filter((t) => {
+      if (globallyVerifiedTaskIds.has(String(t._id))) return false;
+      const submission = userSubmissionsByTask[String(t._id)];
+      if (!submission) return true;
+      return !activeUserStatuses.has(String(submission.status || "").toLowerCase());
+    });
 
     res.json(
       visibleTasks.map((t) => {
@@ -331,7 +363,8 @@ router.get("/tasks", authMiddleware, async (req, res, next) => {
           points: t.basePoints,
           scope: t.scope,
           submissionId: submission?._id,
-          submissionStatus: submission?.status
+          submissionStatus: submission?.status,
+          submissionReason: submission?.verification?.reason
         };
       })
     );
@@ -456,7 +489,7 @@ router.post("/tasks/submissions/:submissionId/verify", authMiddleware, async (re
     const submission = await TaskSubmission.findById(req.params.submissionId);
     if (!submission) return res.status(404).json({ message: "Submission not found" });
 
-    const { aiConfidence, fraudScore, flags, finalStatus } = req.body || {};
+    const { aiConfidence, fraudScore, flags, finalStatus, reason, explanation } = req.body || {};
     if (!["approved", "rejected", "manual_review"].includes(finalStatus)) {
       return res.status(400).json({ message: "Invalid finalStatus" });
     }
@@ -465,6 +498,8 @@ router.post("/tasks/submissions/:submissionId/verify", authMiddleware, async (re
       submissionId: submission._id,
       aiConfidence,
       fraudScore,
+      reason: typeof reason === "string" ? reason : "",
+      explanation: typeof explanation === "string" ? explanation : "",
       flags: Array.isArray(flags) ? flags : [],
       verifiedBy: req.user._id,
       finalStatus
@@ -479,6 +514,8 @@ router.post("/tasks/submissions/:submissionId/verify", authMiddleware, async (re
     submission.verification = {
       aiConfidence,
       fraudScore,
+      reason: typeof reason === "string" ? reason : "",
+      explanation: typeof explanation === "string" ? explanation : "",
       flags: Array.isArray(flags) ? flags : [],
       finalDecision: finalStatus,
       reviewedAt: new Date()
@@ -508,6 +545,8 @@ router.get("/tasks/submissions/:submissionId/verification", authMiddleware, asyn
       submissionId: vr.submissionId,
       aiConfidence: vr.aiConfidence,
       fraudScore: vr.fraudScore,
+      reason: vr.reason,
+      explanation: vr.explanation,
       flags: vr.flags,
       verifiedBy: vr.verifiedBy,
       finalStatus: vr.finalStatus,
@@ -573,14 +612,17 @@ router.post("/tasks/:taskId/start", authMiddleware, async (req, res, next) => {
     const existing = await TaskSubmission.findOne({
       taskId: task._id,
       userId: req.user._id
-    });
+    }).sort({ createdAt: -1 });
 
     if (existing) {
-      return res.status(400).json({
-        message: "Task already started or completed",
-        submissionId: existing._id,
-        status: existing.status
-      });
+      const st = String(existing.status || "").toLowerCase();
+      if (st !== "rejected") {
+        return res.status(400).json({
+          message: `Task already started (${existing.status})`,
+          submissionId: existing._id,
+          status: existing.status
+        });
+      }
     }
 
     const submission = await TaskSubmission.create({
@@ -635,6 +677,10 @@ router.post(
         .filter((f) => f && typeof f.filename === "string")
         .map((f) => `${req.protocol}://${req.get("host")}/uploads/${f.filename}`);
 
+      const imagePaths = files
+        .filter((f) => f && typeof f.filename === "string")
+        .map((f) => path.join(uploadsDir, f.filename));
+
       submission.evidence = {
         imageUrls,
         description: typeof description === "string" ? description : "",
@@ -652,16 +698,54 @@ router.post(
       const expectedMinConfidence = task?.verificationHints?.minConfidence;
 
       // Simulated AI output (replace with real AI service call later)
-      const aiConfidence = imageUrls.length > 0 ? 0.8 : 0.3;
+      let aiConfidence;
       const fraudScore = 0.1;
-      const flags = imageUrls.length > 0 ? ["image_received"] : ["missing_image"];
+      let flags = imageUrls.length > 0 ? ["image_received"] : ["missing_image"];
+      let reason = "";
+      let explanation = "";
+
+      if (imagePaths.length > 0 && process.env.GEMINI_API_KEY) {
+        try {
+          const claim = task?.title || task?.description || "Environmental task evidence";
+          const semantic = await semanticVerification(imagePaths[0], claim);
+          if (typeof semantic?.semantic_score === "number") {
+            aiConfidence = semantic.semantic_score;
+            flags = ["semantic_verification", ...flags];
+            explanation = typeof semantic?.explanation === "string" ? semantic.explanation : "";
+            console.log("[verification] gemini semantic_score=", aiConfidence);
+          } else {
+            flags = ["semantic_verification_invalid", ...flags];
+            reason = "AI verification returned an invalid response";
+          }
+        } catch (err) {
+          flags = ["semantic_verification_error", ...flags];
+          reason = geminiErrorToReason(err);
+          console.error("[verification] gemini error:", err && err.message ? err.message : err);
+          if (err && err.stack) console.error(err.stack);
+        }
+      } else if (imagePaths.length > 0 && !process.env.GEMINI_API_KEY) {
+        flags = ["gemini_key_missing", ...flags];
+        reason = "AI verification not configured";
+      }
 
       const finalStatus = decideVerification({ aiConfidence, fraudScore, minConfidence: expectedMinConfidence });
+
+      if (!reason) {
+        if (finalStatus === "approved") {
+          reason = "Verified by AI";
+        } else if (finalStatus === "rejected") {
+          reason = typeof aiConfidence === "number" ? "Rejected by AI (low confidence)" : "Rejected";
+        } else {
+          reason = typeof aiConfidence === "number" ? "Needs manual review" : "Needs manual review (AI unavailable)";
+        }
+      }
 
       await VerificationResult.create({
         submissionId: submission._id,
         aiConfidence,
         fraudScore,
+        reason,
+        explanation,
         flags,
         finalStatus
       });
@@ -675,6 +759,8 @@ router.post(
       submission.verification = {
         aiConfidence,
         fraudScore,
+        reason,
+        explanation,
         flags,
         finalDecision: finalStatus,
         reviewedAt: new Date()
@@ -694,6 +780,7 @@ router.post(
       res.json({
         status: submission.status,
         submissionId: submission._id,
+        verification: submission.verification,
         ...awarded
       });
     } catch (err) {
@@ -749,7 +836,7 @@ router.get("/me/dashboard", authMiddleware, async (req, res, next) => {
 
     const pendingReview = await TaskSubmission.countDocuments({
       userId: req.user._id,
-      status: { $in: ["pending", "pending_verification"] }
+      status: { $in: ["pending", "pending_verification", "manual_review"] }
     });
 
     const taskTotals = await Task.aggregate([
